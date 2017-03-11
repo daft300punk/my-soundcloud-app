@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import './track.css';
 
 const Track = ({ artwork_url, title }) => {
   return (
