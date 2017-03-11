@@ -6,6 +6,7 @@ import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import App from './containers/App';
+import fetchTrackList from './actions';
 
 const middleware = [ thunk ];
 if(process.env.NODE_ENV !== 'production') {
@@ -16,6 +17,8 @@ const store = createStore(
   reducers,
   applyMiddleware(...middleware)
 );
+
+store.dispatch(fetchTrackList());
 
 render(
   <Provider store={store}>

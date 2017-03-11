@@ -1,3 +1,8 @@
 import { combineReducers } from 'redux';
+import trackList from './TrackList';
 
-export default combineReducers({});
+export default combineReducers({
+  trackList
+});
+
+
