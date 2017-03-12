@@ -1,5 +1,5 @@
 import * as actionTypes from '../constants/ActionTypes';
-import getTrackListApi from '../api/getTrackList';
+import getTop50 from '../api/api-v2';
 
 const requestTrackList = () => ({
   type: actionTypes.REQUEST_TRACKLIST,
@@ -12,7 +12,7 @@ const receiveTrackList = trackList => ({
 
 const fetchTrackList =  () => dispatch => {
   dispatch(requestTrackList());
-  return getTrackListApi().then(
+  return getTop50().then(
     response => {
       dispatch(receiveTrackList(response));
     }

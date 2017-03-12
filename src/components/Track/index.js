@@ -15,8 +15,8 @@ const Track = ({ artwork_url, title }) => {
 };
 
 Track.propTypes = {
-  artwork_url: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  artwork_url: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default Track;

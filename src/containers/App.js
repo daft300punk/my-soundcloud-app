@@ -8,7 +8,6 @@ initializeSC();
 const App = function () {
   return (
     <div className="app">
-      <h2>SoundCloud Remake</h2>
       <TrackListContainer />
     </div>
   );
