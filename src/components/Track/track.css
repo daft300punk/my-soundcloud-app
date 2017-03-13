@@ -22,10 +22,19 @@
   position: absolute;
   height: 200px;
   width: 200px;
-  background: rgba(255, 119, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); }
 
-.track .track-artwork-wrapper:hover img {
-  filter: grayscale(100%); }
+.track .track-artwork-wrapper .play-track {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  color: black; }
+
+.track .track-artwork-wrapper:hover .play-track {
+  display: inline-block; }

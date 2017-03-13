@@ -25,14 +25,24 @@ $soundcloud-orange-overlay: rgba(255, 119, 0, .5);
       position: absolute;
       height: 200px;
       width: 200px;
-      background: $soundcloud-orange-overlay;
+      background: rgba(0, 0, 0, .7);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
 
-    &:hover img {
-      filter: grayscale(100%);
+    .play-track {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: black;
+    }
+
+    &:hover .play-track {
+      display: inline-block;
     }
   }
 }
