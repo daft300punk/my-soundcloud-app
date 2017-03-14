@@ -3,9 +3,13 @@ import { connect } from 'react-redux';
 import TrackList from '../../components/TrackList';
 import { trackPlayStartDispatch, trackPauseDispatch } from '../../actions/playerAction';
 
-const TrackListContainer = ({ tracks, startPlay, playState, playingTrackId, pause}) => (
+const TrackListContainer = ({ tracks, startPlay, playState, playingTrackId, pause }) => (
   <TrackList
-    tracks={tracks} startPlay={startPlay} playState={playState} playingTrackId={playingTrackId} pause={pause}/>
+    tracks={tracks}
+    startPlay={startPlay}
+    playState={playState}
+    playingTrackId={playingTrackId}
+    pause={pause} />
 );
 
 const mapStateToProps = (state) => ({

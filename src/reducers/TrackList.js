@@ -4,7 +4,7 @@ export default function trackList(state = {
   isFetching: false,
   items: []
 }, action) {
-  switch(action.type) {
+  switch (action.type) {
     case actionTypes.REQUEST_TRACKLIST:
       return Object.assign({}, state, {
         isFetching: true,

@@ -6,10 +6,10 @@ import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import App from './containers/App';
-import fetchTop50Tracks from './actions/getTop50';
+import fetchTop50Tracks from './actions/getTop50Action';
 
-const middleware = [ thunk ];
-if(process.env.NODE_ENV !== 'production') {
+const middleware = [thunk];
+if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());
 }
 
@@ -25,4 +25,4 @@ render(
     <App />
   </Provider>,
   document.getElementById('root')
-)
+);

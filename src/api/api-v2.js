@@ -17,6 +17,7 @@ export default function getTop50() {
       url += param + '=' + urlParams[param] + '&';
     }
 
+    //Remove & from end
     url = url.slice(0, url.length - 1);
 
     fetch(url)

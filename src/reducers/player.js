@@ -5,11 +5,11 @@ let initialState = {
   playState: playStates.NOT_PLAYING,
   streamUrl: '',
   playingTrackId: null,
-  player: null
+  player: null,
 }
 
 export default function currentPlaying(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case actionTypes.REQUEST_TRACK_PLAY:
       return Object.assign({}, state, {
         playState: playStates.NOT_PLAYING,
