@@ -10,13 +10,13 @@ const receiveTrackList = trackList => ({
   trackList: trackList,
 });
 
-const fetchTrackList =  () => dispatch => {
+const fetchTop50Tracks =  () => dispatch => {
   dispatch(requestTrackList());
   return getTop50().then(
-    response => {
-      dispatch(receiveTrackList(response));
+    trackList => {
+      dispatch(receiveTrackList(trackList));
     }
   );
 };
 
-export default fetchTrackList;
+export default fetchTop50Tracks;

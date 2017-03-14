@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TrackList from '../../components/TrackList';
-import { trackPlayStartDispatch, trackPauseDispatch } from '../../actions/currentPlayingAction';
+import { trackPlayStartDispatch, trackPauseDispatch } from '../../actions/playerAction';
 
 const TrackListContainer = ({ tracks, startPlay, playState, playingTrackId, pause}) => (
   <TrackList

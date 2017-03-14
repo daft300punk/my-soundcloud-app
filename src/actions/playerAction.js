@@ -32,7 +32,6 @@ export const trackPlayStartDispatch = (pos) => (dispatch, getState) => {
 }
 
 //Action Creators
-
 const trackPausedAC = () => ({
   type: actionTypes.TRACK_PAUSED,
 });

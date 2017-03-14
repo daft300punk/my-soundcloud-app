@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import trackList from './TrackList';
-import currentPlaying from './CurrentPlaying';
+import trackList from './trackList';
+import currentPlaying from './player';
 
 export default combineReducers({
   trackList,
