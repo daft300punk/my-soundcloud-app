@@ -22,11 +22,10 @@ export default function getTop50() {
     fetch(url)
     .then(res => res.json())
     .then(res => {
-      console.log(res);
       return res.collection.map((item) => {
         return {
           artwork_url: item.track.artwork_url != null ? item.track.artwork_url.replace('large.jpg', 't500x500.jpg') : null,
-          stream_url: '/tracks/' + item.track.id,
+          streamUrl: '/tracks/' + item.track.id,
           title: item.track.title
         }
       });
