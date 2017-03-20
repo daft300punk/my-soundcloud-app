@@ -12,11 +12,21 @@ const Track = ({
   pause }) => {
   
   let button;
+
+  const styleImg = {
+    width: '64px',
+    height: '64px',
+  }
   //Only show pause on the track that is currently playing
+  var firstPlay = false;
   if (playState === playStates.PLAYING && playingTrackId === id) {
-    button = <div className="play-track" onClick={() => { pause() }}>Pause</div>
+    button = <div className="play-track show" onClick={() => { pause() }}>
+               <img style={styleImg} src={require('./pause_icon.png')} alt="pause" />
+             </div>
   } else {
-    button = <div className="play-track" onClick={() => { startPlay(id) }}>Play</div>
+    button = <div className="play-track"  onClick={() => { startPlay(id) }}>
+               <img style={styleImg} src={require('./play_icon.png')} alt="pause" />
+             </div>;
   }
 
   return (

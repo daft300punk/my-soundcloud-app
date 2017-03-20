@@ -7,29 +7,36 @@
   margin: 20px;
   background: rgba(255, 255, 255, 0.05);
   float: left; }
-  .track .track-artwork-wrapper {
-    position: relative;
-    height: 200px;
-    width: 200px; }
-    .track .track-artwork-wrapper img {
-      height: 200px;
-      width: 200px;
-      display: block; }
-    .track .track-artwork-wrapper:hover .artwork-overlay {
-      position: absolute;
-      height: 200px;
-      width: 200px;
-      background: rgba(0, 0, 0, 0.7);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); }
-    .track .track-artwork-wrapper .play-track {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      color: black; }
-    .track .track-artwork-wrapper:hover .play-track {
-      display: inline-block; }
+
+.track .track-artwork-wrapper {
+  position: relative;
+  height: 200px;
+  width: 200px; }
+
+.track .track-artwork-wrapper img {
+  height: 200px;
+  width: 200px;
+  display: block; }
+
+.track .track-artwork-wrapper:hover .artwork-overlay {
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  background: rgba(0, 0, 0, 0.7);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.track .track-artwork-wrapper .play-track {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black; }
+
+.track .track-artwork-wrapper:hover .play-track {
+  display: inline-block; }
+
+.track .track-artwork-wrapper .play-track.show {
+  display: inline-block; }
