@@ -1,2 +1,5 @@
 .app {
   overflow: auto; }
+
+.app .main-wrap {
+  display: flex; }
