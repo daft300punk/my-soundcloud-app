@@ -35,9 +35,9 @@ const Track = ({
         <div className="artwork-overlay"></div>
         {button}
       </div>
-      <div className="track-detail">
+      {/*<div className="track-detail">
         {title}
-      </div>
+      </div>*/}
     </div>
   )
 };

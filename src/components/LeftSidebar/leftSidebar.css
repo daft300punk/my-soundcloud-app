@@ -1,6 +1,12 @@
 .leftsidebar-wrap {
   float: left;
-  background: white;
+  background: #eaeaea;
   width: 250px;
-  height: 100vh;
-  min-height: 500px; }
+  height: calc(100vh - 100px);
+  min-height: 600px;
+  position: relative; }
+
+.leftsidebar-wrap .logo-wrap {
+  width: 100%;
+  height: 100px;
+  background: #ea2e49; }
