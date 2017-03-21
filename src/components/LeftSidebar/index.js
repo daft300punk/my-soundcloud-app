@@ -4,7 +4,6 @@ import './leftSidebar.css';
 const LeftSidebar = () => {
   return (
     <div className="leftsidebar-wrap">
-      <div className="logo-wrap"></div>
     </div>
   );
 }

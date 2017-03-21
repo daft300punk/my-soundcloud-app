@@ -1,5 +1,17 @@
 .topbar-wrap {
   width: 100%;
-  height: 100px;
-  background: lavenderblush;
+  height: 80px;
+  background: white;
   position: sticky; }
+
+.topbar-wrap .logo-wrap {
+  width: 250px;
+  height: 100px;
+  display: inline-block;
+  background: #ea2e49;
+  text-align: center; }
+
+.topbar-wrap .logo-wrap img {
+  position: relative;
+  top: 20px;
+  height: 40px; }
