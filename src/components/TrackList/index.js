@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Track from '../Track';
+import './trackList.css'
 
 const TrackList = ({
   tracks,

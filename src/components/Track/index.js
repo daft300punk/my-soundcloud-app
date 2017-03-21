@@ -18,7 +18,6 @@ const Track = ({
     height: '64px',
   }
   //Only show pause on the track that is currently playing
-  var firstPlay = false;
   if (playState === playStates.PLAYING && playingTrackId === id) {
     button = <div className="play-track show" onClick={() => { pause() }}>
                <img style={styleImg} src={require('./pause_icon.png')} alt="pause" />
