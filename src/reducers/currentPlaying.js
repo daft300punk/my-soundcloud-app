@@ -18,6 +18,7 @@ export default function currentPlaying(state = initialState, action) {
     case actionTypes.TRACK_START_PLAYING:
       return Object.assign({}, state, {
         playState: playStates.PLAYING,
+        playingTrackId: action.pos !== null ? action.pos : state.playingTrackId,
       });
     case actionTypes.TRACK_PAUSE:
       return Object.assign({}, state, {

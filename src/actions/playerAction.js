@@ -1,7 +1,6 @@
 import * as actionTypes from '../constants/ActionTypes';
 import { getPlayer } from '../api/getPlayer';
 import SC from 'soundcloud';
-import initializeSC from '../api/initializeSC';
 
 //Action Creators
 const requestGetPlayerAC = (streamUrl, positionOfClickedTrack) => ({
@@ -16,8 +15,9 @@ const receivePlayerAC = (player, pos) => ({
   pos
 });
 
-const trackStartPlayingAC = () => ({
+const trackStartPlayingAC = (pos = null) => ({
   type: actionTypes.TRACK_START_PLAYING,
+  pos: pos
 });
 
 const trackFinishedPlayingAC = () => ({
@@ -30,37 +30,35 @@ const trackPauseAC = () => ({
 
 //Dispatch
 export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, getState) => {
-
-  let currentPlayer = getState().currentPlaying.player;
-  const currentPlayingPos = getState().currentPlaying.playingTrackId;
-  if(currentPlayer != null && positionOfClickedTrack === currentPlayingPos) {
-    currentPlayer.play();
+  const player = getState().playerList.players[positionOfClickedTrack];
+  const currentPlaying = getState().currentPlaying.playingTrackId;
+  console.log("-------", positionOfClickedTrack, player, currentPlaying);
+  if(player) {
+    if(positionOfClickedTrack == getState().currentPlaying.playingTrackId) {
+      player.play();
+      dispatch(trackStartPlayingAC());
+      return;
+    }
+    player.seek(0);
+    player.play();
+    dispatch(trackStartPlayingAC(positionOfClickedTrack));
     return;
   }
 
   //If the track is played for first time, or a new track is played.
   const streamUrl = getState().trackList.items[positionOfClickedTrack].streamUrl;
   dispatch(requestGetPlayerAC(streamUrl, positionOfClickedTrack));
-  SC.initialize({client_id: 'MmZKx4l7fDwXdlL3KJZBiJZ8fLonINga'});
-  SC.stream(streamUrl)
-  .then((player) => {
-    if(player.options.protocols[0] === 'rtmp') 
-      player.options.protocols.splice(0, 1);
-    player._registerPlays = false;
-    return player;
-  })
+  getPlayer(streamUrl)
   .then((player) => {
     dispatch(receivePlayerAC(player, positionOfClickedTrack));
-    let statePlayer = getState().currentPlaying.player;
-    statePlayer.on("play", () => dispatch(trackStartPlayingAC()));
-    statePlayer.on("finish", () => dispatch(trackFinishedPlayingAC()));
-    statePlayer.play();
+    player.play();
+    dispatch(trackStartPlayingAC());
   });
 }
 
 export const trackPauseDispatch = () => (dispatch, getState) => {
-  let currentPlayer = getState().currentPlaying.player;
-  if(currentPlayer != null) 
-    currentPlayer.pause();
-    dispatch(trackPauseAC());
+  const pos = getState().currentPlaying.playingTrackId;
+  const player = getState().playerList.players[pos];
+  player.pause();
+  dispatch(trackPauseAC());
 }

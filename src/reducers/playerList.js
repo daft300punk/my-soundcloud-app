@@ -5,7 +5,6 @@ const initialState = {
 }
 
 export default function playerList(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case actionTypes.RECEIVE_PLAYER:
       return Object.assign({}, state, {

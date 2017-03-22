@@ -1,7 +1,6 @@
 import SC from 'soundcloud';
 
 export function getPlayer(track) {
-  console.log(track);
   return new Promise(function (resolve, reject) {
     SC.stream(track)
       .then(function (player) {
