@@ -1,50 +1,67 @@
 import * as actionTypes from '../constants/ActionTypes';
 import { getPlayer } from '../api/getPlayer';
+import SC from 'soundcloud';
+import initializeSC from '../api/initializeSC';
 
 //Action Creators
-const requestTrackPlayAC = (streamUrl, playingTrackId, player) => ({
-  type: actionTypes.REQUEST_TRACK_PLAY,
+const requestGetPlayerAC = (streamUrl, positionOfClickedTrack) => ({
+  type: actionTypes.REQUEST_GET_PLAYER,
   streamUrl: streamUrl,
-  playingTrackId: playingTrackId,
-  player: player,
+  id: positionOfClickedTrack
 });
 
-const trackPlayStartAC = (player) => ({
-  type: actionTypes.TRACK_PLAY_START,
+const receivePlayerAC = (player) => ({
+  type: actionTypes.RECEIVE_PLAYER,
   player: player
 });
 
+const trackStartPlayingAC = () => ({
+  type: actionTypes.TRACK_START_PLAYING,
+});
+
+const trackFinishedPlayingAC = () => ({
+  type: actionTypes.TRACK_FINISHED_PLAYING
+})
+
+const trackPauseAC = () => ({
+  type: actionTypes.TRACK_PAUSE
+})
+
 //Dispatch
-export const trackPlayStartDispatch = (pos) => (dispatch, getState) => {
-  const state = getState();
-  const player = state.currentPlaying.player;
-  if (player != null && pos === state.currentPlaying.playingTrackId) {
-    //If the track is paused, don't reinitialize player, just play.
-    player.play();
-    dispatch(trackPlayStartAC(player));
+export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, getState) => {
+
+  let currentPlayer = getState().currentPlaying.player;
+  const currentPlayingPos = getState().currentPlaying.playingTrackId;
+  if(currentPlayer != null && positionOfClickedTrack === currentPlayingPos) {
+    currentPlayer.play();
     return;
   }
 
   //If the track is played for first time, or a new track is played.
-  let streamUrl = state.trackList.items[pos].streamUrl;
-  dispatch(requestTrackPlayAC(streamUrl, pos));
-  getPlayer(streamUrl)
-    .then((player) => { player.play(); return player; })
-    .then((player) => dispatch(trackPlayStartAC(player)))
-    .catch(err => console.log(err));
+  const streamUrl = getState().trackList.items[positionOfClickedTrack].streamUrl;
+  dispatch(requestGetPlayerAC(streamUrl, positionOfClickedTrack));
+  SC.initialize({client_id: 'MmZKx4l7fDwXdlL3KJZBiJZ8fLonINga'});
+  SC.stream(streamUrl)
+  .then((player) => {
+    if(player.options.protocols[0] === 'rtmp') 
+      player.options.protocols.splice(0, 1);
+    player._registerPlays = false;
+    return player;
+  })
+  .then((player) => {
+    dispatch(receivePlayerAC(player));
+    let statePlayer = getState().currentPlaying.player;
+    console.log('$$$$$$$$$$$$$', statePlayer);
+    statePlayer.on("play", () => dispatch(trackStartPlayingAC()));
+    statePlayer.on("finish", () => dispatch(trackFinishedPlayingAC()));
+    statePlayer.play();
+  });
 }
 
-//Action Creators
-const trackPausedAC = () => ({
-  type: actionTypes.TRACK_PAUSED,
-});
-
-//Dispatch
 export const trackPauseDispatch = () => (dispatch, getState) => {
-  const state = getState();
-  const player = state.currentPlaying.player;
-  if (player != null) {
-    player.pause();
-    dispatch(trackPausedAC());
-  }
+  let currentPlayer = getState().currentPlaying.player;
+  console.log("------------", currentPlayer);
+  if(currentPlayer != null) 
+    currentPlayer.pause();
+    dispatch(trackPauseAC());
 }
