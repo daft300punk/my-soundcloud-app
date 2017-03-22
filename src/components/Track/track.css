@@ -6,33 +6,27 @@
   flex-grow: 1;
   padding: 1%;
   flex-basis: 17%; }
-
-.track .track-artwork-wrapper {
-  position: relative; }
-
-.track .track-artwork-wrapper img {
-  max-width: 100%;
-  display: block; }
-
-.track .track-artwork-wrapper:hover .artwork-overlay {
-  position: absolute;
-  background: rgba(27, 29, 37, 0.85);
-  height: 100%;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); }
-
-.track .track-artwork-wrapper .play-track {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: black; }
-
-.track .track-artwork-wrapper:hover .play-track {
-  display: inline-block; }
-
-.track .track-artwork-wrapper .play-track.show {
-  display: inline-block; }
+  .track .track-artwork-wrapper {
+    position: relative; }
+    .track .track-artwork-wrapper img {
+      max-width: 100%;
+      display: block; }
+    .track .track-artwork-wrapper:hover .artwork-overlay {
+      position: absolute;
+      background: rgba(27, 29, 37, 0.85);
+      height: 100%;
+      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+    .track .track-artwork-wrapper .play-track {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: black; }
+    .track .track-artwork-wrapper:hover .play-track {
+      display: inline-block; }
+    .track .track-artwork-wrapper .play-track.show {
+      display: inline-block; }

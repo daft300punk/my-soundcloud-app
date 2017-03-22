@@ -10,9 +10,10 @@ const requestGetPlayerAC = (streamUrl, positionOfClickedTrack) => ({
   id: positionOfClickedTrack
 });
 
-const receivePlayerAC = (player) => ({
+const receivePlayerAC = (player, pos) => ({
   type: actionTypes.RECEIVE_PLAYER,
-  player: player
+  player: player,
+  pos
 });
 
 const trackStartPlayingAC = () => ({
@@ -49,9 +50,8 @@ export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, get
     return player;
   })
   .then((player) => {
-    dispatch(receivePlayerAC(player));
+    dispatch(receivePlayerAC(player, positionOfClickedTrack));
     let statePlayer = getState().currentPlaying.player;
-    console.log('$$$$$$$$$$$$$', statePlayer);
     statePlayer.on("play", () => dispatch(trackStartPlayingAC()));
     statePlayer.on("finish", () => dispatch(trackFinishedPlayingAC()));
     statePlayer.play();
@@ -60,7 +60,6 @@ export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, get
 
 export const trackPauseDispatch = () => (dispatch, getState) => {
   let currentPlayer = getState().currentPlaying.player;
-  console.log("------------", currentPlayer);
   if(currentPlayer != null) 
     currentPlayer.pause();
     dispatch(trackPauseAC());

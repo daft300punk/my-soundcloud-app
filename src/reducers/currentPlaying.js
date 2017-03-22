@@ -4,8 +4,7 @@ import { playStates } from '../constants/PlayState';
 let initialState = {
   playState: playStates.NOT_PLAYING,
   streamUrl: null,
-  playingTrackId: null,
-  player: null,
+  playingTrackId: null
 }
 
 export default function currentPlaying(state = initialState, action) {
@@ -15,11 +14,6 @@ export default function currentPlaying(state = initialState, action) {
         playState: playStates.NOT_PLAYING,
         streamUrl: action.streamUrl,
         playingTrackId: action.id,
-        player: null
-      });
-    case actionTypes.RECEIVE_PLAYER:
-      return Object.assign({}, state, {
-        player: action.player,
       });
     case actionTypes.TRACK_START_PLAYING:
       return Object.assign({}, state, {
@@ -32,7 +26,6 @@ export default function currentPlaying(state = initialState, action) {
     case actionTypes.TRACK_FINISHED_PLAYING:
       return Object.assign({}, state, {
         playState: playStates.NOT_PLAYING,
-        player: null,
         playingTrackId: null,
         streamUrl: null,
       });
