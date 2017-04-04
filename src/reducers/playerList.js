@@ -4,6 +4,12 @@ const initialState = {
   players: {}
 }
 
+const getNewPlayers = (state, id, value) => {
+  let newPlayer = Object.assign({}, state.players);
+  newPlayer[id] = value;
+  return newPlayer;
+}
+
 export default function playerList(state = initialState, action) {
   switch (action.type) {
     case actionTypes.RECEIVE_PLAYER:
@@ -13,10 +19,4 @@ export default function playerList(state = initialState, action) {
     default:
       return state;
   }
-}
-
-const getNewPlayers = (state, id, value) => {
-  let newPlayer = Object.assign({}, state.players);
-  newPlayer[id] = value;
-  return newPlayer;
 }

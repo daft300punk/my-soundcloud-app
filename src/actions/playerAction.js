@@ -1,6 +1,5 @@
 import * as actionTypes from '../constants/ActionTypes';
 import { getPlayer } from '../api/getPlayer';
-import SC from 'soundcloud';
 
 //Action Creators
 const requestGetPlayerAC = (streamUrl, positionOfClickedTrack) => ({
@@ -34,7 +33,7 @@ export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, get
   const currentPlaying = getState().currentPlaying.playingTrackId;
   console.log("-------", positionOfClickedTrack, player, currentPlaying);
   if(player) {
-    if(positionOfClickedTrack == getState().currentPlaying.playingTrackId) {
+    if(positionOfClickedTrack === getState().currentPlaying.playingTrackId) {
       player.play();
       dispatch(trackStartPlayingAC());
       return;
