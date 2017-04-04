@@ -8,6 +8,13 @@ const TrackList = ({
   startPlay,
   playingTrackId,
   pause}) => {
+
+  //Hack to align last items to the grid by having dummy/empty elements
+  const len = tracks.length;
+  const dummyElemToAdd = (len - 3) % 5;
+  for (let i = 0; i <= dummyElemToAdd; i++) tracks.push({});
+
+
   return (
     <div className="track-list-wrap">
       {
