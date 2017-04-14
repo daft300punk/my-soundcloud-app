@@ -53,7 +53,7 @@
     "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "build": "react-scripts build",
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "node server/index.js",
     "eject": "react-scripts eject",
     "test": "jest",
     "test:watch": "npm test -- --watch"

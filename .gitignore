@@ -10,9 +10,7 @@ build
 .DS_Store
 npm-debug.log
 .env
-<<<<<<< HEAD
+
 .idea
 .vscode
-=======
-.idea
->>>>>>> e462e6c16d618f5061fbc8d84edf7ff9fa8bd314
+
