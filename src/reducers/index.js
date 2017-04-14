@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import trackList from './trackList.js';
+import trackList from './TrackList.js';
 import currentPlaying from './currentPlaying';
 import playerList from './playerList'
 
