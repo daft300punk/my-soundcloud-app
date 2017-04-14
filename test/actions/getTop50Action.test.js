@@ -9,4 +9,14 @@ describe('sync actions', () => {
        };
        expect(actions.requestTrackList()).toEqual(expectedAction);
     });
-})
+
+    it('should create an action for receiving tracklist', () => {
+        const trackList = {};
+        const expectedAction = {
+            type: actionTypes.RECEIVE_TRACKLIST,
+            trackList: trackList
+        };
+        expect(actions.receiveTrackList(trackList)).toEqual(expectedAction);
+    });
+
+});

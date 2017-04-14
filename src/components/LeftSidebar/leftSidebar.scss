@@ -1,7 +1,14 @@
 .leftsidebar-wrap {
   background: #eaeaea;
+  display: flex;
   flex: 0 0 250px;
+  flex-direction: column;
   height: calc(100vh - 80px);
   min-height: 600px;
   position: relative;
+  align-items: center;
+
+  .musicOrAudio {
+    width: 100px;
+  } 
 }

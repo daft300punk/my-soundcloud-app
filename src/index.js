@@ -13,16 +13,19 @@ if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());
 }
 
-const store = createStore(
-  reducers,
-  applyMiddleware(...middleware)
-);
+export const configureStore = () => {
+  const store = createStore(
+    reducers,
+    applyMiddleware(...middleware)
+  );
 
-store.dispatch(fetchTop50Tracks());
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers').default;
+      store.replaceReducer(nextRootReducer);
+    });
+  }
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
+  return store;
+};

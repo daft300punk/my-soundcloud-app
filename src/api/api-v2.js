@@ -1,3 +1,5 @@
+import 'isomorphic-fetch';
+
 export default function getTop50() {
   return new Promise(function(resolve, reject) {
     let urlParams = {

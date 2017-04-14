@@ -1,11 +1,11 @@
 import * as actionTypes from '../constants/ActionTypes';
 import getTop50 from '../api/api-v2';
 
-const requestTrackList = () => ({
+export const requestTrackList = () => ({
   type: actionTypes.REQUEST_TRACKLIST,
-})
+});
 
-const receiveTrackList = trackList => ({
+export const receiveTrackList = trackList => ({
   type: actionTypes.RECEIVE_TRACKLIST,
   trackList: trackList,
 });
