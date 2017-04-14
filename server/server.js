@@ -1,6 +1,7 @@
 import path from 'path';
 import Express from 'express';
 import qs from 'qs';
+import cors from 'cors';
 
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -20,6 +21,7 @@ const port = 3000;
 const compiler = webpack(webpackConfig);
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }))
 app.use(webpackHotMiddleware(compiler));
+app.use(cors());
 
 app.use(handleRender);
 

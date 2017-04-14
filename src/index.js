@@ -1,11 +1,8 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
-import reducers from './reducers';
-import App from './containers/App';
+import reducers from './reducers/index';
 import fetchTop50Tracks from './actions/getTop50Action';
 
 const middleware = [thunk];
@@ -21,8 +18,8 @@ export const configureStore = () => {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers').default;
+    module.hot.accept('./reducers/index', () => {
+      const nextRootReducer = require('./reducers/index').default;
       store.replaceReducer(nextRootReducer);
     });
   }

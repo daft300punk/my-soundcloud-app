@@ -1,4 +1,4 @@
-import SC from 'soundcloud';
+import SC from 'node-soundcloud';
 
 export function getPlayer(track) {
   return new Promise(function (resolve, reject) {

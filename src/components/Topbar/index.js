@@ -1,13 +1,18 @@
 import React from 'react';
-import './topbar.css';
+import './topbar.scss';
+
+import logo from './logo.png'
+import search from './search.png';
 
 const Topbar = () => {
   return (
     <div className="topbar-wrap">
-      <div className="logo-wrap"><img className="logo" src={require("./logo.png")} alt="logo"></img></div>
+      <div className="logo-wrap">
+        <img className="logo" src={require('./logo.png')} alt="logo" />
+      </div>
       <div className="input-wrap">
-        <input hint="Search songs, artists, audio"></input>
-        <img src={require('./search.png')} alt="search"></img>
+        <input />
+        <img  alt="search" src={require('./search.png')}/>
       </div>
     </div>
   );

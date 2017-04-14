@@ -1,5 +1,5 @@
 import React from 'react';
-import './leftSidebar.css';
+import './leftSidebar.scss';
 
 /*
 Sidebar Options:

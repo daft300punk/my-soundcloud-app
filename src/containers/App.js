@@ -4,7 +4,7 @@ import TrackListContainer from './TrackListContainer';
 import LeftSidebarContainer from './LeftSidebarContainer';
 import TopbarContainer from './TopbarContainer';
 import RightSidebarContainer from './RightSidebarContainer'
-import './App.css';
+import './App.scss';
 
 initializeSC();
 

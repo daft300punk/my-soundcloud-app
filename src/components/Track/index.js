@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import './track.css';
+import './track.scss';
 import { playStates } from '../../constants/PlayState';
 
 const Track = ({
