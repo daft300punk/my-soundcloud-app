@@ -30,7 +30,6 @@ app.use(cors());
 app.get('/tracks', (req, res) => {
   getTop50()
   .then(result => {
-    console.log('res node', result);
     res.send(result);
   });
 });

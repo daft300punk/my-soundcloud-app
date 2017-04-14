@@ -49,7 +49,7 @@ export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, get
   dispatch(requestGetPlayerAC(streamUrl, positionOfClickedTrack));
   getPlayer(streamUrl)
   .then((player) => {
-    player.on("finish", () => dispatch(trackFinishedPlayingAC()));
+    player.addEventListener("ended", () => dispatch(trackFinishedPlayingAC()));
     dispatch(receivePlayerAC(player, positionOfClickedTrack));
     player.play();
     dispatch(trackStartPlayingAC());
