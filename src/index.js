@@ -3,12 +3,10 @@ import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
+
 import fetchTop50Tracks from './actions/getTop50Action';
 
-const middleware = [thunk];
-if (process.env.NODE_ENV !== 'production') {
-  middleware.push(createLogger());
-}
+const middleware = [thunk, createLogger()];
 
 export const configureStore = () => {
   const store = createStore(
@@ -23,6 +21,8 @@ export const configureStore = () => {
       store.replaceReducer(nextRootReducer);
     });
   }
+
+  store.dispatch(fetchTop50Tracks());
 
   return store;
 };

@@ -7,6 +7,7 @@ require.extensions['.png'] = () => { return; }
 module.exports = {
   devtool: 'inline-source-map',
   entry: [
+    'webpack-hot-middleware/client',
     './client/index.js'
   ],
   output: {
@@ -28,7 +29,7 @@ module.exports = {
       {
         test: /\.png$/,
         include: path.join(__dirname, 'src'),
-        loader: 'url-loader?limit=8192'
+        loader: 'url-loader?limit=80'
       },
       {
         test: /\.js$/,

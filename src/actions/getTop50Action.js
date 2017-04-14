@@ -12,7 +12,16 @@ export const receiveTrackList = trackList => ({
 
 const fetchTop50Tracks =  () => dispatch => {
   dispatch(requestTrackList());
-  return getTop50().then(
+  return fetch('./tracks')
+    .then(res => {
+      console.log('res', res);
+      return res.json();
+    })
+    .then(res => {
+      console.log('res2', res);
+      return res;
+    })
+    .then(
     trackList => {
       dispatch(receiveTrackList(trackList));
     }

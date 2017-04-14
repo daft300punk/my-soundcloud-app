@@ -15,13 +15,25 @@ import { Provider } from 'react-redux';
 import { configureStore } from '../src/index';
 import App from '../src/containers/App';
 
+import getTop50 from '../src/api/api-v2';
+
 const app = new Express();
 const port = 3000;
 
 const compiler = webpack(webpackConfig);
+
+
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }))
 app.use(webpackHotMiddleware(compiler));
 app.use(cors());
+
+app.get('/tracks', (req, res) => {
+  getTop50()
+  .then(result => {
+    console.log('res node', result);
+    res.send(result);
+  });
+});
 
 app.use(handleRender);
 
@@ -45,7 +57,7 @@ function renderFullPage(html, preloadedState) {
       <head>
         <title>Redux Universal Example</title>
       </head>
-      <body>
+      <body style="padding: 0; margin: 0;">
         <div id="root">${html}</div>
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\x3c')}

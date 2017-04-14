@@ -1,5 +1,10 @@
 import SC from 'soundcloud';
 
+SC.init({
+  client_id: 'MmZKx4l7fDwXdlL3KJZBiJZ8fLonINga',
+  redirect_uri: 'http://localhost:3000/'
+});
+
 export default function getTrackListApi() {
   return new Promise(function(resolve, reject) {
     SC.get('/tracks')
