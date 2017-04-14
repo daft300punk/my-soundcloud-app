@@ -46,13 +46,14 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "serve-static": "^1.12.1",
-    "soundcloud": "^3.1.2"
+    "soundcloud": "^3.1.2",
+    "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
     "build-css": "node-sass src/ -o src/",
     "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config ./webpack.config.js",
     "start": "node server/index.js",
     "eject": "react-scripts eject",
     "test": "jest",
