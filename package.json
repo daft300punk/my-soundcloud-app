@@ -54,7 +54,7 @@
     "build-css": "node-sass src/ -o src/",
     "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
-    "build": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config ./webpack.prod.config.js -p",
+    "build": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config ./webpack.prod.config.js",
     "start": "node server/index.js",
     "eject": "react-scripts eject",
     "test": "jest",
