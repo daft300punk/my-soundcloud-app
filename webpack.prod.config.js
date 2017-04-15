@@ -5,7 +5,7 @@ require.extensions['.scss'] = () => { return; }; require.extensions['.css'] = ()
 require.extensions['.png'] = () => { return; }
 
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
     './client/index.js'
@@ -44,5 +44,18 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            beautify: false,
+            mangle: {
+                screw_ie8: true,
+                keep_fnames: true
+            },
+            compress: {
+                screw_ie8: true
+            },
+            comments: false
+        })
+    ]
 };
