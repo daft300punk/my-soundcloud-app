@@ -29,16 +29,17 @@ const trackPauseAC = () => ({
 
 //Dispatch
 export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, getState) => {
+  dispatch(trackPauseDispatch());
+
   const player = getState().playerList.players[positionOfClickedTrack];
   const currentPlaying = getState().currentPlaying.playingTrackId;
-  console.log("-------", positionOfClickedTrack, player, currentPlaying);
   if(player) {
     if(positionOfClickedTrack === getState().currentPlaying.playingTrackId) {
       player.play();
       dispatch(trackStartPlayingAC());
       return;
     }
-    player.seek(0);
+    player.currentTime = 0;
     player.play();
     dispatch(trackStartPlayingAC(positionOfClickedTrack));
     return;
@@ -59,6 +60,8 @@ export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, get
 export const trackPauseDispatch = () => (dispatch, getState) => {
   const pos = getState().currentPlaying.playingTrackId;
   const player = getState().playerList.players[pos];
-  player.pause();
-  dispatch(trackPauseAC());
+  if(player) {
+    player.pause();
+    dispatch(trackPauseAC());
+  }
 }

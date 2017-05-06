@@ -14,11 +14,9 @@ const fetchTop50Tracks =  () => dispatch => {
   dispatch(requestTrackList());
   return fetch('./tracks')
     .then(res => {
-      console.log('res', res);
       return res.json();
     })
     .then(res => {
-      console.log('res2', res);
       return res;
     })
     .then(

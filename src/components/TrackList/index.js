@@ -12,7 +12,6 @@ const TrackList = ({
   //Hack to align last items to the grid by having dummy/empty elements
   const len = tracks.length;
   const dummyElemToAdd = (Math.floor((len - 3) / 5) + 1) * 5 - (len - 3);
-  console.log('dummy', len, dummyElemToAdd);
   for (let i = 0; i <= dummyElemToAdd; i++) tracks.push({});
 
 
