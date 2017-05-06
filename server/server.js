@@ -6,7 +6,7 @@ import cors from 'cors';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../webpack.config';
+import webpackConfig from '../webpack.prod.config';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -57,7 +57,7 @@ function renderFullPage(html, preloadedState) {
         <title>Redux Universal Example</title>
       </head>
       <body style="padding: 0; margin: 0;">
-        <div id="root">${html}</div>
+        <div id="root"><div>${html}</div></div>
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\x3c')}
         </script>
