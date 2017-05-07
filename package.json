@@ -58,8 +58,5 @@
     "eject": "react-scripts eject",
     "test": "jest",
     "test:watch": "npm test -- --watch"
-  },
-  "engines": {
-    "node": ">= 0.10.3"
   }
 }

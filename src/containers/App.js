@@ -3,7 +3,8 @@ import initializeSC from '../api/initializeSC';
 import TrackListContainer from './TrackListContainer';
 import LeftSidebarContainer from './LeftSidebarContainer';
 import TopbarContainer from './TopbarContainer';
-import RightSidebarContainer from './RightSidebarContainer'
+import RightSidebarContainer from './RightSidebarContainer';
+import BottomBarContainer from './BottomBarContainer';
 import './App.scss';
 
 initializeSC();
@@ -17,6 +18,7 @@ const App = function () {
         <TrackListContainer />
         <RightSidebarContainer />
       </div>
+      <BottomBarContainer />
     </div>
   );
 };
