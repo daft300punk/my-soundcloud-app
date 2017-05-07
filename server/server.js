@@ -2,11 +2,12 @@ import path from 'path';
 import Express from 'express';
 import qs from 'qs';
 import cors from 'cors';
+import compression from 'compression';
 
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from '../webpack.config';
+import webpackConfig from '../webpack.prod.config';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -22,7 +23,7 @@ const port = process.env.PORT || 3000;
 
 const compiler = webpack(webpackConfig);
 
-
+app.use(compression());
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }))
 app.use(webpackHotMiddleware(compiler));
 app.use(cors());
