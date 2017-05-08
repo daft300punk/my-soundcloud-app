@@ -11,13 +11,13 @@ export default function getTrackListApi() {
     .then(function (tracks) {
       //Only return the required data
       tracks = tracks.filter(function(track){
-        if(track.title == null || track.streamUrl == null || track.artwork_url == null) {
+        if(track.title == null || track.streamUrl == null || track.artworkUrl == null) {
           return false;
         }
         return true;
       }).map((track) => {
         return {
-          artwork_url: track.artwork_url,
+          artworkUrl: track.artworkUrl,
           streamUrl: track.streamUrl,
           title: track.title
         };

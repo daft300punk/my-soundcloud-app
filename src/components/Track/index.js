@@ -14,7 +14,7 @@ const Track = ({
   playingTrackId,
   pause }) => {
   let button;
-
+  console.log('-----', artworkUrl);
   const styleImg = {
     width: '64px',
     height: '64px',

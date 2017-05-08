@@ -21,7 +21,7 @@ const TrackList = ({
         tracks.map((track, i) => (
           <Track
             key={i}
-            artwork_url={track.artwork_url}
+            artworkUrl={track.artworkUrl}
             title={track.title}
             id={i} startPlay={startPlay}
             playState={playState}

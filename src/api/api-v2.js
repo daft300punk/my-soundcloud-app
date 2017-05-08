@@ -27,7 +27,7 @@ export default function getTop50() {
     .then(res => {
       return res.collection.map((item) => {
         return {
-          artwork_url: item.track.artwork_url != null ? item.track.artwork_url.replace('large.jpg', 't500x500.jpg') : null,
+          artworkUrl: item.track.artwork_url != null ? item.track.artwork_url.replace('large.jpg', 't500x500.jpg') : null,
           streamUrl: '/tracks/' + item.track.id,
           title: item.track.title
         }
