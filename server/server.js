@@ -12,6 +12,8 @@ import webpackConfig from '../webpack.config';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from '../src/reducers';
 
 import App from '../src/containers/App';
 
@@ -37,7 +39,7 @@ app.get('/tracks', (req, res) => {
 app.use(handleRender);
 
 function handleRender(req, res) {
-  const store = configureStore();
+  const store = createStore(rootReducer);
 
   const html = renderToString(
     <Provider store={store}>

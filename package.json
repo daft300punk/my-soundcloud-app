@@ -18,6 +18,9 @@
     "css-loader": "^0.28.0",
     "dotenv": "^4.0.0",
     "enzyme": "^2.4.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
     "expect": "^1.20.2",
     "express": "^4.15.2",
     "file-loader": "^0.11.1",
@@ -57,6 +60,7 @@
     "start": "node server/index.js",
     "eject": "react-scripts eject",
     "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "lint": "eslint . --ext .js"
   }
 }
