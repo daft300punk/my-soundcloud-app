@@ -16,14 +16,10 @@ const fetchTop50Tracks =  () => dispatch => {
     .then(res => {
       return res.json();
     })
-    .then(res => {
-      return res;
-    })
     .then(
     trackList => {
       dispatch(receiveTrackList(trackList));
-    }
-  );
+    });
 };
 
 export default fetchTop50Tracks;
