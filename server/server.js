@@ -13,7 +13,6 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 
-import { configureStore } from '../src/index';
 import App from '../src/containers/App';
 
 import getTop50 from '../src/api/api-v2';
