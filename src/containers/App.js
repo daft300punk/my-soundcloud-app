@@ -7,6 +7,7 @@ import RightSidebarContainer from './RightSidebarContainer';
 import BottomBarContainer from './BottomBarContainer';
 import fetchTop50Tracks from '../actions/getTop50Action';
 import { connect } from 'react-redux';
+import { playStates } from '../constants/PlayState'
 
 import './App.scss';
 
@@ -22,6 +23,7 @@ class App extends Component {
   }
 
   render() {
+    const { playState } = this.props;
     return (
       <div className="app">
         <TopbarContainer />
@@ -30,14 +32,16 @@ class App extends Component {
           <TrackListContainer />
           <RightSidebarContainer />
         </div>
-        <BottomBarContainer />
+        { (playState === playStates.PLAYING || playState === playStates.PAUSED) && <BottomBarContainer /> }
       </div>
     );
   }
 
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  playState: state.currentPlaying.playState
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTop50: () => { dispatch(fetchTop50Tracks()); }
