@@ -3,6 +3,9 @@
   height: 80px;
   background: white;
   position: sticky;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, .02);
 
   .logo-wrap {
     width: 250px;
@@ -22,13 +25,14 @@
     padding: 0 30px 0 30px;
     display: inline-block;
     position: relative;
-    top: 8px;
+    flex-grow: 1;
 
     input {
       -webkit-appearance: none;
       border: 1px solid rgba(0, 0, 0, .1);
       height: 36px;
-      width: 440px;
+      width: 40%;
+      min-width: 600px;
       border-radius: 20px;
       font-size: 21px;
       padding: 0 60px 0 20px;
@@ -43,6 +47,28 @@
       position: relative;
       top: 2px;
       left: -44px;
+    }
+  }
+
+  .playlist-title {
+    width: 250px;
+    height: 100%;
+    background-color: #77c4d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+
+    img {
+      padding-right: 6px;
+      position: relative;
+      top: -3px;
+    }
+    
+    h2 {
+      font-weight: normal!important;
+      font-size: 18px;
     }
   }
 }

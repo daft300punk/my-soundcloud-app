@@ -14,6 +14,10 @@ const Topbar = () => {
         <input />
         <img  alt="search" src={require('./search.png')}/>
       </div>
+      <div className="playlist-title">
+        <img src={require('./Icon.png')} />
+        <h2>PLAYLIST</h2>
+      </div>
     </div>
   );
 }
