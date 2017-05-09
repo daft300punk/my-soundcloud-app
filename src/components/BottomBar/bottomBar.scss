@@ -4,11 +4,12 @@
   background: rgb(27, 29, 37);
   height: 80px;
   width: 100%;
-  position: fixed;
+  min-width: 1280px;
+  position: absolute;
   bottom: 0;
+  left: 0;
+  overflow: hidden;
   box-shadow: rgba(0, 0, 0, .5) -1px -1px 10px;
-  padding-left: 10px;
-  padding-right: 10px;
   font-family: 'Roboto', sans-serif;
 
   .img-wrap {

@@ -29,6 +29,8 @@ app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig
 app.use(webpackHotMiddleware(compiler));
 app.use(cors());
 
+app.use(Express.static('public'));
+
 app.get('/tracks', (req, res) => {
   getTop50()
   .then(result => {
@@ -56,9 +58,10 @@ function renderFullPage(html, preloadedState) {
     <!doctype html>
     <html>
       <head>
-        <title>Redux Universal Example</title>
+        <title>Soundcloud Client</title>
+        <link rel="stylesheet" type="text/css" href="/style.css">
       </head>
-      <body style="padding: 0; margin: 0;">
+      <body>
         <div id="root"><div>${html}</div></div>
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\x3c')}
