@@ -50,6 +50,25 @@
     }
   }
 
+  input[type='range'] {
+      width: 100%;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-progress-appearance: none;
+      border-radius: 11px;
+      border: none;
+      height: 11px;
+      background-color: #333745;
+      overflow: hidden;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+      width: 0;
+      -webkit-appearance: none;
+      height: 10px;
+      box-shadow: -800px 0 0 800px #ea2e49;
+    }
+
   .seek-slider {
     flex-grow: 1;
     display: flex;
@@ -62,9 +81,6 @@
       padding: 0 8px 0 4px;
     }
 
-    input[type='range'] {
-      width: 100%;
-    }
   }
 
   .repeat-shuffle {
@@ -77,10 +93,8 @@
   }
 
   .volume-slider {
+    display: flex;
+    align-items: center;
     padding: 0 20px 0 20px;
-
-    input[type="range"] {
-      margin: 0 20px 0 20px;
-    }
   }
 }
