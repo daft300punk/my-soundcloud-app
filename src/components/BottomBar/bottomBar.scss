@@ -22,9 +22,10 @@
 
   .info {
     color: white;
+    padding: 0 20px 0 0;
 
     h5 {
-      padding: 0 0 2px 0;
+      padding: 0 0 1px 0;
       margin: 0;
       font-weight: normal;
       font-size: 16px;
@@ -36,6 +37,50 @@
       margin: 0;
       font-size: 12px;
       color: rgba(255, 255, 255, .7);
+    }
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 0 20px;
+
+    img {
+      padding: 0 12px 0 12px;
+    }
+  }
+
+  .seek-slider {
+    flex-grow: 1;
+    display: flex;
+    padding: 0 20px 0 20px;
+    align-items: center;
+
+    span {
+      font-size: 12px;
+      color: white;
+      padding: 0 8px 0 4px;
+    }
+
+    input[type='range'] {
+      width: 100%;
+    }
+  }
+
+  .repeat-shuffle {
+    padding: 0 20px 0 20px;
+    display: flex;
+    align-items: center;
+    img {
+      padding: 0 12px 0 12px;
+    }
+  }
+
+  .volume-slider {
+    padding: 0 20px 0 20px;
+
+    input[type="range"] {
+      margin: 0 20px 0 20px;
     }
   }
 }
