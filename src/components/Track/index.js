@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import './track.scss';
 import { playStates } from '../../constants/PlayState';
 
-const playIcon = require('./play_icon.png');
-const pauseIcon = require('./pause_icon.png');
+const playIcon = require('./img/play_icon.png');
+const pauseIcon = require('./img/pause_icon.png');
 
 const Track = ({
   artworkUrl,
