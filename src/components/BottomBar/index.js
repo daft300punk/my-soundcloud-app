@@ -1,5 +1,6 @@
 import React from 'react';
 import './bottomBar.scss';
+import ReactTooltip from 'react-tooltip';
 
 const BottomBar = ({
   artworkUrl,
@@ -13,8 +14,8 @@ const BottomBar = ({
       </div>
 
       <div className="info">
-        <h5>{title}</h5>
-        <p>{artist}</p>
+        <h5 data-tip={title}>{title}</h5>
+        <p data-tip={artist}>{artist}</p>
       </div>
       <div className="controls">
         <img src={require('./img/Previous.png')} role="button"/>
@@ -34,6 +35,7 @@ const BottomBar = ({
         <img src={require('./img/Audio.png')} />
         <input type="range" name="volume" id="volume" min="0" max="100" />
       </div>
+      <ReactTooltip place="top" effect="float" className="tooltip"/>
     </div>
   );
 }
