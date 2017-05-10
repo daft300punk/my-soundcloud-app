@@ -25,7 +25,6 @@ export default function getTop50() {
     fetch(url)
     .then(res => res.json())
     .then(res => {
-      console.log(res.collection[0]);
       return res.collection.map((item) => {
         return {
           artworkUrl: item.track.artwork_url !== null ? item.track.artwork_url.replace('large.jpg', 't500x500.jpg') : null,

@@ -1,7 +1,11 @@
 import React from 'react';
 import './bottomBar.scss';
 
-const BottomBar = ({artworkUrl}) => {
+const BottomBar = ({
+  artworkUrl,
+  artist,
+  title
+}) => {
   return (
     <div className="bottom-bar">
       <div className="img-wrap">
@@ -9,8 +13,8 @@ const BottomBar = ({artworkUrl}) => {
       </div>
 
       <div className="info">
-        <h5>DARK HORSE</h5>
-        <p>Prism - Katy Perry</p>
+        <h5>{title}</h5>
+        <p>{artist}</p>
       </div>
       <div className="controls">
         <img src={require('./img/Previous.png')} role="button"/>
