@@ -30,16 +30,13 @@ function getScrollbarWidth() {
       tracklist = document.getElementById('tracklist');
 
     let scrollbarWidth = getScrollbarWidth();
-    console.log(window.innerWidth);
     if(window.innerWidth < 1280) {
       leftsidebar.style.height = `${window.innerHeight -80 - scrollbarWidth}px`;
       rightsidebar.style.height = `${window.innerHeight - 80 - scrollbarWidth}px`;
       tracklist.style.height = `${window.innerHeight - 80 - scrollbarWidth}px`;
-      console.log(leftsidebar.clientHeight, rightsidebar.clientHeight, tracklist.clientHeight);
     } else {
       leftsidebar.style.height = `${window.innerHeight -80}px`;
       rightsidebar.style.height = `${window.innerHeight - 80}px`;
       tracklist.style.height = `${window.innerHeight - 80}px`;
-      console.log(leftsidebar.clientHeight, rightsidebar.clientHeight, tracklist.clientHeight);
     }
   }
