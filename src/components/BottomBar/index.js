@@ -5,8 +5,11 @@ import ReactTooltip from 'react-tooltip';
 const BottomBar = ({
   artworkUrl,
   artist,
-  title
+  title,
+  currentTime,
+  endTime
 }) => {
+  console.log(currentTime, endTime);
   return (
     <div className="bottom-bar">
       <div className="img-wrap">
@@ -23,9 +26,9 @@ const BottomBar = ({
         <img src={require('./img/Next.png')} role="button"/>
       </div>
       <div className="seek-slider">
-        <span>3:55</span>
+        <span>{currentTime}</span>
         <input type="range" name="seek" id="points" min="0" max="100" />
-        <span>5:32</span>
+        <span>{endTime}</span>
       </div>
       <div className="repeat-shuffle">
         <img src={require('./img/Repeat.png')} role="button"/>
