@@ -3,7 +3,7 @@ import './rightSidebar.scss';
 
 const RightSidebar = () => {
   return (
-    <div className="leftsidebar-wrap">
+    <div className="leftsidebar-wrap" id="rightsidebar">
     </div>
   );
 }

@@ -7,7 +7,8 @@ import RightSidebarContainer from './RightSidebarContainer';
 import BottomBarContainer from './BottomBarContainer';
 import fetchTop50Tracks from '../actions/getTop50Action';
 import { connect } from 'react-redux';
-import { playStates } from '../constants/PlayState'
+import { playStates } from '../constants/PlayState';
+import updateDimension from '../util/updateDimension';
 
 import './App.scss';
 
@@ -20,6 +21,10 @@ class App extends Component {
 
   componentDidMount() {
     this.props.fetchTop50();
+    window.addEventListener('resize', () => {
+      updateDimension();
+    });
+    updateDimension();
   }
 
   render() {
