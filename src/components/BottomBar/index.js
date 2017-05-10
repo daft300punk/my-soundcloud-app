@@ -1,10 +1,11 @@
 import React from 'react';
 import './bottomBar.scss';
 
-const BottomBar = () => {
+const BottomBar = ({artworkUrl}) => {
   return (
     <div className="bottom-bar">
       <div className="img-wrap">
+        <img src={artworkUrl} />
       </div>
 
       <div className="info">
