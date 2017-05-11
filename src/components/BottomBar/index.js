@@ -1,15 +1,15 @@
 import React from 'react';
 import './bottomBar.scss';
 import ReactTooltip from 'react-tooltip';
+import getTimeString from '../../util/getTimeString';
 
 const BottomBar = ({
   artworkUrl,
   artist,
   title,
-  currentTime,
-  endTime
+  currentTimeInSec,
+  endTimeInSec
 }) => {
-  console.log(currentTime, endTime);
   return (
     <div className="bottom-bar">
       <div className="img-wrap">
@@ -26,9 +26,9 @@ const BottomBar = ({
         <img src={require('./img/Next.png')} role="button"/>
       </div>
       <div className="seek-slider">
-        <span>{currentTime}</span>
+        <span>{getTimeString(currentTimeInSec)}</span>
         <input type="range" name="seek" id="points" min="0" max="100" />
-        <span>{endTime}</span>
+        <span>{getTimeString(endTimeInSec)}</span>
       </div>
       <div className="repeat-shuffle">
         <img src={require('./img/Repeat.png')} role="button"/>

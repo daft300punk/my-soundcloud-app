@@ -5,8 +5,8 @@ let initialState = {
   playState: playStates.NOT_PLAYING,
   streamUrl: null,
   playingTrackId: null,
-  currentTime: null,
-  endTime: null,
+  currentTimeInSec: null,
+  endTimeInSec: null,
 }
 
 export default function currentPlaying(state = initialState, action) {
@@ -20,13 +20,15 @@ export default function currentPlaying(state = initialState, action) {
     case actionTypes.RECEIVE_PLAYER:
     console.log('-----', action);
       return Object.assign({}, state, {
-        currentTime: action.currentTime,
-        endTime: action.endTime
+        currentTimeInSec: action.currentTimeInSec,
+        endTimeInSec: action.endTimeInSec
       });
     case actionTypes.TRACK_START_PLAYING:
+      const playingTrackId = action.pos !== null ? action.pos : state.playingTrackId;
       return Object.assign({}, state, {
         playState: playStates.PLAYING,
-        playingTrackId: action.pos !== null ? action.pos : state.playingTrackId,
+        playingTrackId: playingTrackId,
+        currentTimeInSec: action.currentTimeInSec,
       });
     case actionTypes.TRACK_PAUSE:
       return Object.assign({}, state, {

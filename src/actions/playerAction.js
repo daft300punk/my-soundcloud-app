@@ -12,13 +12,14 @@ const receivePlayerAC = (player, pos) => ({
   type: actionTypes.RECEIVE_PLAYER,
   player: player,
   pos: pos,
-  currentTime: 0,
-  endTime: Math.floor(player.duration)
+  currentTimeInSec: 0,
+  endTimeInSec: Math.floor(player.duration)
 });
 
-const trackStartPlayingAC = (pos = null) => ({
+const trackStartPlayingAC = (pos = null, currentTimeInSec) => ({
   type: actionTypes.TRACK_START_PLAYING,
-  pos: pos
+  pos: pos,
+  currentTimeInSec: Math.floor(currentTimeInSec),
 });
 
 const trackFinishedPlayingAC = () => ({
@@ -38,12 +39,12 @@ export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, get
   if(player) {
     if(positionOfClickedTrack === getState().currentPlaying.playingTrackId) {
       player.play();
-      dispatch(trackStartPlayingAC());
+      dispatch(trackStartPlayingAC(null, player.currentTime));
       return;
     }
     player.currentTime = 0;
     player.play();
-    dispatch(trackStartPlayingAC(positionOfClickedTrack));
+    dispatch(trackStartPlayingAC(positionOfClickedTrack, 0));
     return;
   }
 
@@ -52,11 +53,10 @@ export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, get
   dispatch(requestGetPlayerAC(streamUrl, positionOfClickedTrack));
   getPlayer(streamUrl)
   .then((player) => {
-    console.log('00000', player);
     dispatch(receivePlayerAC(player, positionOfClickedTrack));
     player.addEventListener("ended", () => dispatch(trackFinishedPlayingAC()));
     player.play();
-    dispatch(trackStartPlayingAC());
+    dispatch(trackStartPlayingAC(null, 0));
   });
 }
 
