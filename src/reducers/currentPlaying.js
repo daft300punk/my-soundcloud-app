@@ -40,6 +40,10 @@ export default function currentPlaying(state = initialState, action) {
         playingTrackId: null,
         streamUrl: null,
       });
+    case  actionTypes.UPDATE_CURRENT_TIME:
+      return Object.assign({}, state, {
+        currentTimeInSec: action.currentTimeInSec
+      });
     default:
       return state;
   }

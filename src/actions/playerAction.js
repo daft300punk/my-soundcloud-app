@@ -30,21 +30,39 @@ const trackPauseAC = () => ({
   type: actionTypes.TRACK_PAUSE
 });
 
+const updateCurrentTimeAC = (currentTimeInSec) => ({
+  type: actionTypes.UPDATE_CURRENT_TIME,
+  currentTimeInSec: Math.floor(currentTimeInSec)
+});
+
+// TODO: refactor this later
+var timer;
+const setTimer = (dispatch, player) => {
+  console.log(player);
+  timer = setInterval(() => {
+    dispatch(updateCurrentTimeAC(player.currentTime));
+  }, 1000);
+}
+
 //Dispatch
 export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, getState) => {
   dispatch(trackPauseDispatch());
 
-  const player = getState().playerList.players[positionOfClickedTrack];
-  const currentPlaying = getState().currentPlaying.playingTrackId;
+  const player = getState().playerList.players[positionOfClickedTrack],
+    currentPlaying = getState().currentPlaying.playingTrackId;
+
   if(player) {
+    var currentTimeInSec = player.currentTime;
     if(positionOfClickedTrack === getState().currentPlaying.playingTrackId) {
       player.play();
       dispatch(trackStartPlayingAC(null, player.currentTime));
+      setTimer(dispatch, player);
       return;
     }
     player.currentTime = 0;
     player.play();
     dispatch(trackStartPlayingAC(positionOfClickedTrack, 0));
+    setTimer(dispatch, player);
     return;
   }
 
@@ -54,9 +72,13 @@ export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, get
   getPlayer(streamUrl)
   .then((player) => {
     dispatch(receivePlayerAC(player, positionOfClickedTrack));
-    player.addEventListener("ended", () => dispatch(trackFinishedPlayingAC()));
+    player.addEventListener("ended", () => {
+      dispatch(trackFinishedPlayingAC());
+      clearInterval(timer);
+    });
     player.play();
     dispatch(trackStartPlayingAC(null, 0));
+    setTimer(dispatch, player);
   });
 }
 
@@ -65,6 +87,7 @@ export const trackPauseDispatch = () => (dispatch, getState) => {
   const player = getState().playerList.players[pos];
   if(player) {
     player.pause();
+    clearInterval(timer);
     dispatch(trackPauseAC());
   }
 }

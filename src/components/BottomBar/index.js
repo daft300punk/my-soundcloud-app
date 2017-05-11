@@ -27,7 +27,7 @@ const BottomBar = ({
       </div>
       <div className="seek-slider">
         <span>{getTimeString(currentTimeInSec)}</span>
-        <input type="range" name="seek" id="points" min="0" max="100" />
+        <input type="range" name="seek" id="points" min={0} max={endTimeInSec} value={currentTimeInSec}/>
         <span>{getTimeString(endTimeInSec)}</span>
       </div>
       <div className="repeat-shuffle">
