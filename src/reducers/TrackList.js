@@ -1,14 +1,10 @@
 //@flow
 import * as actionTypes from '../constants/ActionTypes';
+import type { actionFType } from '../actions/flowType';
 
 type trackListState = {
   isFetching: boolean,
   items: Array<any>,
-}
-
-type trackListAction = {
-  type: string,
-  trackList: ?Array<any>
 }
 
 var initialState: trackListState = {
@@ -18,7 +14,7 @@ var initialState: trackListState = {
 
 export default function trackList(
   state: trackListState = initialState,
-  action: trackListAction
+  action: actionFType
 ): trackListState {
   switch (action.type) {
     case actionTypes.REQUEST_TRACKLIST:

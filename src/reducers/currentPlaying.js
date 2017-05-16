@@ -1,3 +1,4 @@
+//@flow
 import * as actionTypes from '../constants/ActionTypes';
 import { playStates } from '../constants/PlayState';
 

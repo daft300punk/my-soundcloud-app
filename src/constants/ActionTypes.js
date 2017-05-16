@@ -1,3 +1,4 @@
+//@flow
 export const REQUEST_TRACKLIST = 'REQUEST_TRACKLIST';
 export const RECEIVE_TRACKLIST = 'RECEIVE_TRACKLIST';
 
