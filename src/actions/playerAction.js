@@ -1,8 +1,9 @@
+//@flow
 import * as actionTypes from '../constants/ActionTypes';
 import { getPlayer } from '../api/getPlayer';
 
 //Action Creators
-const requestGetPlayerAC = (streamUrl, positionOfClickedTrack) => ({
+const requestGetPlayerAC = (streamUrl: string, positionOfClickedTrack: number) => ({
   type: actionTypes.REQUEST_GET_PLAYER,
   streamUrl: streamUrl,
   id: positionOfClickedTrack

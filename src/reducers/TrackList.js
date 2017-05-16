@@ -8,7 +8,7 @@ type trackListState = {
 
 type trackListAction = {
   type: string,
-  trackList: Array<any>
+  trackList: ?Array<any>
 }
 
 var initialState: trackListState = {
