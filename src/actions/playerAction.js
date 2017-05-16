@@ -1,15 +1,22 @@
 //@flow
 import * as actionTypes from '../constants/ActionTypes';
 import { getPlayer } from '../api/getPlayer';
+import type { Action, Dispatch, ThunkAction, PromiseAction, GetState } from './flowType';
 
 //Action Creators
-const requestGetPlayerAC = (streamUrl: string, positionOfClickedTrack: number) => ({
+const requestGetPlayerAC = (
+  streamUrl: string,
+  positionOfClickedTrack: number
+): Action => ({
   type: actionTypes.REQUEST_GET_PLAYER,
   streamUrl: streamUrl,
   id: positionOfClickedTrack
 });
 
-const receivePlayerAC = (player, pos) => ({
+const receivePlayerAC = (
+  player: Object,
+  pos: number
+): Action => ({
   type: actionTypes.RECEIVE_PLAYER,
   player: player,
   pos: pos,
@@ -17,21 +24,26 @@ const receivePlayerAC = (player, pos) => ({
   endTimeInSec: Math.floor(player.duration)
 });
 
-const trackStartPlayingAC = (pos = null, currentTimeInSec) => ({
+const trackStartPlayingAC = (
+  pos: ?number = null,
+  currentTimeInSec
+): Action => ({
   type: actionTypes.TRACK_START_PLAYING,
   pos: pos,
   currentTimeInSec: Math.floor(currentTimeInSec),
 });
 
-const trackFinishedPlayingAC = () => ({
+const trackFinishedPlayingAC = (): Action => ({
   type: actionTypes.TRACK_FINISHED_PLAYING
 });
 
-const trackPauseAC = () => ({
+const trackPauseAC = (): Action => ({
   type: actionTypes.TRACK_PAUSE
 });
 
-const updateCurrentTimeAC = (currentTimeInSec) => ({
+const updateCurrentTimeAC = (
+  currentTimeInSec: number
+): Action => ({
   type: actionTypes.UPDATE_CURRENT_TIME,
   currentTimeInSec: Math.floor(currentTimeInSec)
 });
