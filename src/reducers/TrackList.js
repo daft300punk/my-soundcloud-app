@@ -1,9 +1,25 @@
+//@flow
 import * as actionTypes from '../constants/ActionTypes';
 
-export default function trackList(state = {
+type trackListState = {
+  isFetching: boolean,
+  items: Array<any>,
+}
+
+type trackListAction = {
+  type: string,
+  trackList: Array<any>
+}
+
+var initialState: trackListState = {
   isFetching: false,
   items: []
-}, action) {
+}
+
+export default function trackList(
+  state: trackListState = initialState,
+  action: trackListAction
+): trackListState {
   switch (action.type) {
     case actionTypes.REQUEST_TRACKLIST:
       return Object.assign({}, state, {
