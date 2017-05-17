@@ -1,6 +1,6 @@
 //@flow
 import * as actionTypes from '../constants/ActionTypes';
-import type { actionFType } from '../actions/flowType';
+import type { Action } from '../actions/flowType';
 
 type trackListState = {
   isFetching: boolean,
@@ -14,7 +14,7 @@ var initialState: trackListState = {
 
 export default function trackList(
   state: trackListState = initialState,
-  action: actionFType
+  action: Action
 ): trackListState {
   switch (action.type) {
     case actionTypes.REQUEST_TRACKLIST:

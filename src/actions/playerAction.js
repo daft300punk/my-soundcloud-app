@@ -3,6 +3,13 @@ import * as actionTypes from '../constants/ActionTypes';
 import { getPlayer } from '../api/getPlayer';
 import type { Action, Dispatch, ThunkAction, PromiseAction, GetState } from './flowType';
 
+type Player = {
+  duration: number,
+  currentTime: number,
+  play: Function,
+  pause: Function
+}
+
 //Action Creators
 const requestGetPlayerAC = (
   streamUrl: string,
@@ -14,7 +21,7 @@ const requestGetPlayerAC = (
 });
 
 const receivePlayerAC = (
-  player: Object,
+  player: Player,
   pos: number
 ): Action => ({
   type: actionTypes.RECEIVE_PLAYER,
@@ -50,19 +57,37 @@ const updateCurrentTimeAC = (
 
 // TODO: refactor this later
 var timer;
-const setTimer = (dispatch, player) => {
-  console.log(player);
-  timer = setInterval(() => {
+const setTimer = (dispatch: Dispatch, player: Player) => {
+  timer = setInterval((): void => {
     dispatch(updateCurrentTimeAC(player.currentTime));
   }, 1000);
 }
 
 //Dispatch
-export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, getState) => {
+
+export const trackPauseDispatch = (): ThunkAction => (
+  dispatch: Dispatch,
+  getState: GetState
+) => {
+  const pos: number = getState().currentPlaying.playingTrackId;
+  const player: Player = getState().playerList.players[pos];
+  if(player) {
+    player.pause();
+    clearInterval(timer);
+    dispatch(trackPauseAC());
+  }
+}
+
+export const trackPlayStartDispatch = (
+  positionOfClickedTrack: number
+): ThunkAction => (
+  dispatch: Dispatch,
+  getState: GetState
+) => {
   dispatch(trackPauseDispatch());
 
-  const player = getState().playerList.players[positionOfClickedTrack],
-    currentPlaying = getState().currentPlaying.playingTrackId;
+  const player: Player = getState().playerList.players[positionOfClickedTrack],
+    currentPlaying: number = getState().currentPlaying.playingTrackId;
 
   if(player) {
     var currentTimeInSec = player.currentTime;
@@ -80,7 +105,7 @@ export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, get
   }
 
   //If the track is played for first time, or a new track is played.
-  const streamUrl = getState().trackList.items[positionOfClickedTrack].streamUrl;
+  const streamUrl: string = getState().trackList.items[positionOfClickedTrack].streamUrl;
   dispatch(requestGetPlayerAC(streamUrl, positionOfClickedTrack));
   getPlayer(streamUrl)
   .then((player) => {
@@ -93,14 +118,4 @@ export const trackPlayStartDispatch = (positionOfClickedTrack) => (dispatch, get
     dispatch(trackStartPlayingAC(null, 0));
     setTimer(dispatch, player);
   });
-}
-
-export const trackPauseDispatch = () => (dispatch, getState) => {
-  const pos = getState().currentPlaying.playingTrackId;
-  const player = getState().playerList.players[pos];
-  if(player) {
-    player.pause();
-    clearInterval(timer);
-    dispatch(trackPauseAC());
-  }
 }
