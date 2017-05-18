@@ -34,4 +34,39 @@ describe('Player action creators', () => {
     expect(actions.receivePlayerAC(Player, Pos))
     .toEqual(expectedAction);
   });
+
+  it('should create action for track start playing', () => {
+    const expectedAction = {
+      type: actionTypes.TRACK_START_PLAYING,
+      pos: Pos,
+      currentTimeInSec: CurrentTimeInSec,
+    };
+    expect(actions.trackStartPlayingAC(Pos, CurrentTimeInSec))
+    .toEqual(expectedAction);
+  });
+
+  it('should create action for track finished playing', () => {
+    const expectedAction = {
+      type: actionTypes.TRACK_FINISHED_PLAYING,
+    };
+    expect(actions.trackFinishedPlayingAC())
+    .toEqual(expectedAction);
+  });
+
+  it('should create action for track paused playing', () => {
+    const expectedAction = {
+      type: actionTypes.TRACK_PAUSE
+    };
+    expect(actions.trackPauseAC())
+    .toEqual(expectedAction);
+  });
+
+  it('should create action for updating current time', () => {
+    const expectedAction = {
+      type: actionTypes.UPDATE_CURRENT_TIME,
+      currentTimeInSec: CurrentTimeInSec
+    };
+    expect(actions.updateCurrentTimeAC(CurrentTimeInSec))
+    .toEqual(expectedAction);
+  });
 });
