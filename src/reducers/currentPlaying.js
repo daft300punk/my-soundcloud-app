@@ -39,7 +39,6 @@ export default function currentPlaying(
         playingTrackId: action.id,
       });
     case actionTypes.RECEIVE_PLAYER:
-    console.log('-----', action);
       return Object.assign({}, state, {
         currentTimeInSec: action.currentTimeInSec,
         endTimeInSec: action.endTimeInSec
