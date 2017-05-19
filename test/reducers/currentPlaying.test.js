@@ -89,4 +89,66 @@ describe('Cureent Playing reducer', () => {
       }
     );
   });
+
+  it('should handle TRACK_PAUSE', () => {
+    expect(
+      reducer(
+        initialState,
+        {
+          type: actionTypes.TRACK_PAUSE,
+          playState: playStates.PAUSED
+        }
+      )
+    ).toEqual(
+      Object.assign({}, initialState,
+        {
+          playState: playStates.PAUSED
+        }
+      )
+    );
+  });
+
+  it('should handle TRACK_FINISHED_PLAYING', () => {
+    expect(
+      reducer(
+        {
+          playState: playStates.PAUSED,
+          streamUrl: "streamurl.com",
+          playingTrackId: 2,
+          currentTimeInSec: 175,
+          endTimeInSec: 175
+        },
+        {
+          type: actionTypes.TRACK_FINISHED_PLAYING
+        }
+      )
+    ).toEqual(
+      Object.assign({}, initialState, {
+        playState: playStates.NOT_PLAYING,
+        currentTimeInSec: 175,
+        endTimeInSec: 175
+      })
+    );
+  });
+
+  it('should handle UPDATE_CURRENT_TIME', () => {
+    const state = {
+      playState: playStates.PLAYING,
+      streamUrl: "streamUrl.com",
+      playingTrackId: 2,
+      currentTimeInSec: 40,
+      endTimeInSec: 175
+    };
+
+    expect(
+      reducer(state, {
+        type: actionTypes.UPDATE_CURRENT_TIME,
+        currentTimeInSec: 50
+      })
+    ).toEqual(
+      Object.assign({}, state, {
+        currentTimeInSec: 50
+      })
+    );
+  });
 });
