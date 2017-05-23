@@ -21,9 +21,9 @@ const BottomBar = ({
         <p data-tip={artist}>{artist}</p>
       </div>
       <div className="controls">
-        <img src={require('./img/Previous.png')} role="button"/>
-        <img src={require('./img/Pause.png')} role="button"/>
-        <img src={require('./img/Next.png')} role="button"/>
+        <img src={require('./img/backward.png')} role="button"/>
+        <img src={require('./img/play.png')} role="button"/>
+        <img src={require('./img/forward.png')} role="button"/>
       </div>
       <div className="seek-slider">
         <span>{getTimeString(currentTimeInSec)}</span>
@@ -31,11 +31,11 @@ const BottomBar = ({
         <span>{getTimeString(endTimeInSec)}</span>
       </div>
       <div className="repeat-shuffle">
-        <img src={require('./img/Repeat.png')} role="button"/>
-        <img src={require('./img/Shuffle.png')} role="button"/>
+        <img src={require('./img/repeat.png')} role="button"/>
+        <img src={require('./img/shuffle.png')} role="button"/>
       </div>
       <div className="volume-slider">
-        <img src={require('./img/Audio.png')} />
+        <img src={require('./img/sound.png')} />
         <input type="range" name="volume" id="volume" min="0" max="100" />
       </div>
       <ReactTooltip place="top" effect="float" className="tooltip"/>
