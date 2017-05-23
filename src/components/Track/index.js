@@ -1,3 +1,4 @@
+//@flow
 import React, { PropTypes } from 'react';
 import './track.scss';
 import { playStates } from '../../constants/PlayState';
@@ -5,21 +6,32 @@ import { playStates } from '../../constants/PlayState';
 const playIcon = require('./img/play_icon.png');
 const pauseIcon = require('./img/pause_icon.png');
 
+type TrackType = {
+  artworkUrl: string,
+  title: string,
+  idOfClickedTrack: number,
+  startPlay: Function,
+  playState: string,
+  playingTrackId: number,
+  pause: Function
+};
+
 const Track = ({
   artworkUrl,
   title,
-  id,
+  idOfClickedTrack,
   startPlay,
   playState,
   playingTrackId,
-  pause }) => {
+  pause
+}: TrackType) => {
   let button;
   const styleImg = {
     width: '64px',
     height: '64px',
   };
   // Only show pause on the track that is currently playing
-  if (playState === playStates.PLAYING && playingTrackId === id) {
+  if (playState === playStates.PLAYING && playingTrackId === idOfClickedTrack) {
     button = (
       <div className="play-track show" role="button" onClick={() => { pause(); }}>
         <img style={styleImg} src={pauseIcon} alt="pause" />
@@ -27,7 +39,7 @@ const Track = ({
     );
   } else {
     button = (
-      <div className="play-track" role="button" onClick={() => { startPlay(id); }}>
+      <div className="play-track" role="button" onClick={() => { startPlay(idOfClickedTrack); }}>
         <img style={styleImg} src={playIcon} alt="pause" />
       </div>
     );
@@ -47,7 +59,7 @@ const Track = ({
 Track.propTypes = {
   artworkUrl: PropTypes.string,
   title: PropTypes.string,
-  id: PropTypes.number,
+  idOfClickedTrack: PropTypes.number,
   startPlay: PropTypes.func.isRequired,
   playingTrackId: PropTypes.number,
   pause: PropTypes.func.isRequired,
