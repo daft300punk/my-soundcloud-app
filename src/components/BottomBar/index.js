@@ -1,4 +1,5 @@
 import React from 'react';
+import pt from 'prop-types';
 import './bottomBar.scss';
 import ReactTooltip from 'react-tooltip';
 import getTimeString from '../../util/getTimeString';
@@ -54,6 +55,18 @@ const BottomBar = ({
       <ReactTooltip place="top" effect="float" className="tooltip"/>
     </div>
   );
+}
+
+BottomBar.propTypes = {
+  artworkUrl: pt.string.isRequired,
+  artist: pt.string.isRequired,
+  title: pt.string.isRequired,
+  currentTimeInSec: pt.number.isRequired,
+  endTimeInSec: pt.number.isRequired,
+  playState: pt.string.isRequired,
+  playingTrackId: pt.number.isRequired,
+  startPlay: pt.func.isRequired,
+  pause: pt.func.isRequired
 }
 
 export default BottomBar;
