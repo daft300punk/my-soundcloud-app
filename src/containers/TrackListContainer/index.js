@@ -21,7 +21,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   startPlay: (pos) => { dispatch(trackPlayStartDispatch(pos)); },
   pause: () => { dispatch(trackPauseDispatch()); }
-})
+});
 
 export default connect(
   mapStateToProps,

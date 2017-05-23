@@ -10,13 +10,18 @@ const BottomBar = ({
   title,
   currentTimeInSec,
   endTimeInSec,
-  playState
+  playState,
+  playingTrackId,
+  startPlay,
+  pause
 }) => {
+
+
   let playOrPauseButton;
   if(playState === playStates.PAUSED)
-    playOrPauseButton = <img src={require('./img/play.png')} role="button"/>;
+    playOrPauseButton = <img src={require('./img/play.png')} role="button" onClick={() => startPlay(playingTrackId)}/>;
   else if(playState === playStates.PLAYING)
-    playOrPauseButton = <img src={require('./img/pause.png')} role="button"/>;
+    playOrPauseButton = <img src={require('./img/pause.png')} role="button" onClick={() => pause()}/>;
 
   return (
     <div className="bottom-bar">
