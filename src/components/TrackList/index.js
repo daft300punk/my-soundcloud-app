@@ -23,7 +23,7 @@ const TrackList = ({
             key={i}
             artworkUrl={track.artworkUrl}
             title={track.title}
-            id={i} startPlay={startPlay}
+            idOfClickedTrack={i} startPlay={startPlay}
             playState={playState}
             playingTrackId={playingTrackId}
             pause={pause} />

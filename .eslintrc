@@ -8,5 +8,11 @@
   },
   "rules": {
     "linebreak-style": ["error", "windows"]
-  }
+  },
+  "extends": [
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": [
+    "flowtype"
+  ]
 }

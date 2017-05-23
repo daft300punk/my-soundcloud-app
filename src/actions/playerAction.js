@@ -1,13 +1,9 @@
 //@flow
 import * as actionTypes from '../constants/ActionTypes';
-import {
-  getPlayer
-}
-from '../api/getPlayer';
+import { getPlayer } from '../api/getPlayer';
 import type {
   Action, Dispatch, ThunkAction, PromiseAction, GetState
-}
-from './flowType';
+} from './flowType';
 
 type Player = {
   duration: number,
