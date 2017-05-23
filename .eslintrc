@@ -1,11 +1,11 @@
 {
   "parserOptions": {
-    "ecmaVersion" 6,
+    "ecmaVersion": 6,
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "sourceType": "module"
   },
-  extends: "rallycoding",
   "rules": {
     "linebreak-style": ["error", "windows"]
   }
