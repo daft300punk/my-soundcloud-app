@@ -32,6 +32,10 @@ module.exports = {
         loader: 'url-loader?limit=80'
       },
       {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      },
+      {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
