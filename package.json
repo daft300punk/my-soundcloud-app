@@ -32,6 +32,7 @@
     "node-sass": "^4.5.2",
     "node-soundcloud": "0.0.6",
     "npm-run-all": "^4.0.2",
+    "prop-types": "^15.5.10",
     "react": "^15.3.0",
     "react-addons-test-utils": "^15.3.0",
     "react-dom": "^15.3.0",
@@ -66,5 +67,14 @@
     "test:watch": "npm test -- --watch",
     "lint": "eslint src/",
     "flow": "flow"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "<rootDir>/test/__mocks__/styleMock.js"
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules"
+    ]
   }
 }
