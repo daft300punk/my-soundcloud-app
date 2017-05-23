@@ -2,14 +2,22 @@ import React from 'react';
 import './bottomBar.scss';
 import ReactTooltip from 'react-tooltip';
 import getTimeString from '../../util/getTimeString';
+import { playStates } from '../../constants/PlayState';
 
 const BottomBar = ({
   artworkUrl,
   artist,
   title,
   currentTimeInSec,
-  endTimeInSec
+  endTimeInSec,
+  playState
 }) => {
+  let playOrPauseButton;
+  if(playState === playStates.PAUSED)
+    playOrPauseButton = <img src={require('./img/play.png')} role="button"/>;
+  else if(playState === playStates.PLAYING)
+    playOrPauseButton = <img src={require('./img/pause.png')} role="button"/>;
+
   return (
     <div className="bottom-bar">
       <div className="img-wrap">
@@ -22,7 +30,7 @@ const BottomBar = ({
       </div>
       <div className="controls">
         <img src={require('./img/backward.png')} role="button"/>
-        <img src={require('./img/play.png')} role="button"/>
+        {playOrPauseButton}
         <img src={require('./img/forward.png')} role="button"/>
       </div>
       <div className="seek-slider">

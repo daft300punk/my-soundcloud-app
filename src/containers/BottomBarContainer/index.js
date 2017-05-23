@@ -7,14 +7,16 @@ const BottomBarContainer = ({
   artist,
   title,
   currentTimeInSec,
-  endTimeInSec
+  endTimeInSec,
+  playState
 }) => (
-  <BottomBar 
+  <BottomBar
     artworkUrl={artworkUrl}
     artist={artist}
     title={title}
     currentTimeInSec={currentTimeInSec}
     endTimeInSec={endTimeInSec}
+    playState={playState}
   />
 );
 
@@ -27,7 +29,8 @@ const mapStateToProps = (state) => {
     artist: state.trackList.items[id].artist,
     title: state.trackList.items[id].title,
     currentTimeInSec: state.currentPlaying.currentTimeInSec,
-    endTimeInSec: state.currentPlaying.endTimeInSec
+    endTimeInSec: state.currentPlaying.endTimeInSec,
+    playState: state.currentPlaying.playState
   }
 };
 
