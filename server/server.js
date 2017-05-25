@@ -20,7 +20,7 @@ import App from '../src/containers/App';
 import getTop50 from '../src/api/api-v2';
 
 const app = new Express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 const compiler = webpack(webpackConfig);
 

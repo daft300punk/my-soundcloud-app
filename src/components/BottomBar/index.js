@@ -14,7 +14,8 @@ const BottomBar = ({
   playState,
   playingTrackId,
   startPlay,
-  pause
+  pause,
+  changeSongCurrentTime
 }) => {
 
 
@@ -23,6 +24,10 @@ const BottomBar = ({
     playOrPauseButton = <img src={require('./img/play.png')} role="button" onClick={() => startPlay(playingTrackId)}/>;
   else if(playState === playStates.PLAYING)
     playOrPauseButton = <img src={require('./img/pause.png')} role="button" onClick={() => pause()}/>;
+
+  const onSliderChange = (event) => {
+    changeSongCurrentTime(event.target.value);
+  }
 
   return (
     <div className="bottom-bar">
@@ -41,7 +46,14 @@ const BottomBar = ({
       </div>
       <div className="seek-slider">
         <span>{getTimeString(currentTimeInSec)}</span>
-        <input type="range" name="seek" id="points" min={0} max={endTimeInSec} value={currentTimeInSec}/>
+        <input type="range"
+          name="seek"
+          id="points"
+          step={1}
+          min={0} max={endTimeInSec}
+          value={currentTimeInSec}
+          onChange={(event) => onSliderChange(event)}
+        />
         <span>{getTimeString(endTimeInSec)}</span>
       </div>
       <div className="repeat-shuffle">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BottomBar from '../../components/BottomBar';
-import { trackPauseDispatch, trackPlayStartDispatch } from '../../actions/playerAction';
+import { trackPauseDispatch, trackPlayStartDispatch, updateTimeDispatch } from '../../actions/playerAction';
 
 const BottomBarContainer = ({
   artworkUrl,
@@ -12,7 +12,8 @@ const BottomBarContainer = ({
   playState,
   playingTrackId,
   startPlay,
-  pause
+  pause,
+  changeSongCurrentTime
 }) => (
   <BottomBar
     artworkUrl={artworkUrl}
@@ -24,6 +25,7 @@ const BottomBarContainer = ({
     playingTrackId={playingTrackId}
     startPlay={startPlay}
     pause={pause}
+    changeSongCurrentTime={changeSongCurrentTime}
   />
 );
 
@@ -44,7 +46,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   startPlay: (pos) => { dispatch(trackPlayStartDispatch(pos)); },
-  pause: () => { dispatch(trackPauseDispatch()) }
+  pause: () => { dispatch(trackPauseDispatch()) },
+  changeSongCurrentTime: (newTimeInSec) => { dispatch(updateTimeDispatch(newTimeInSec)) }
 });
 
 export default connect(
