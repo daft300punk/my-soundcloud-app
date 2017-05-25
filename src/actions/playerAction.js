@@ -62,7 +62,7 @@ var timer;
 const setTimer = (dispatch: Dispatch, player: Player) => {
   timer = setInterval((): void => {
     dispatch(updateCurrentTimeAC(player.currentTime));
-  }, 1000);
+  }, 100);
 }
 
 //Dispatch
@@ -131,7 +131,7 @@ export const updateTimeDispatch = (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-  updateCurrentTimeAC(newTimeInSec);  
+  updateCurrentTimeAC(newTimeInSec);
 
   const playingTrackId: number = getState().currentPlaying.playingTrackId
   const player: Player = getState().playerList.players[playingTrackId];
