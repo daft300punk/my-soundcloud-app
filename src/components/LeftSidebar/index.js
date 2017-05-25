@@ -17,10 +17,10 @@ C. Explore Genre
 const LeftSidebar = () => {
   return (
     <div className="leftsidebar-wrap" id="leftsidebar">
-      <select className="musicOrAudio">
+      {/*<select className="musicOrAudio">
         <option>Music</option>
         <option>Audio</option>
-      </select>
+      </select>*/}
     </div>
   );
 }
