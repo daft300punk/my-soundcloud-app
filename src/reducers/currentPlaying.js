@@ -7,7 +7,8 @@ type currentPlayingState = {
   streamUrl: ?string,
   playingTrackId: ?number,
   currentTimeInSec: ?number,
-  endTimeInSec: ?number
+  endTimeInSec: ?number,
+  volume: number
 }
 
 type currentPlayingAction = {
@@ -17,7 +18,8 @@ type currentPlayingAction = {
   id: ?number,
   currentTimeInSec: ?number,
   endTimeInSec: ?number,
-  pos: ?number
+  pos: ?number,
+  volume: number
 }
 
 let initialState: currentPlayingState = {
@@ -26,6 +28,7 @@ let initialState: currentPlayingState = {
   playingTrackId: null,
   currentTimeInSec: null,
   endTimeInSec: null,
+  volume: 50
 }
 
 export default function currentPlaying(
@@ -63,6 +66,10 @@ export default function currentPlaying(
     case  actionTypes.UPDATE_CURRENT_TIME:
       return Object.assign({}, state, {
         currentTimeInSec: action.currentTimeInSec
+      });
+    case actionTypes.UPDATE_VOLUME:
+      return Object.assign({}, state, {
+        volume: action.volume
       });
     default:
       return state;

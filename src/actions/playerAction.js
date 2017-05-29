@@ -9,8 +9,9 @@ type Player = {
   duration: number,
   currentTime: number,
   play: Function,
-  pause: Function
-}
+  pause: Function,
+  volume: number
+};
 
 //Action Creators
 export const requestGetPlayerAC = (
@@ -57,6 +58,13 @@ export const updateCurrentTimeAC = (
   currentTimeInSec: Math.floor(currentTimeInSec)
 });
 
+const updateVolumeAC = (
+  volume: number
+): Action => ({
+  type: actionTypes.UPDATE_VOLUME,
+  volume: volume
+});
+
 // TODO: refactor this later
 var timer;
 const setTimer = (dispatch: Dispatch, player: Player) => {
@@ -67,18 +75,34 @@ const setTimer = (dispatch: Dispatch, player: Player) => {
 
 //Dispatch
 
-export const trackPauseDispatch = (): ThunkAction => (
+export const trackPauseDispatch = (
+): ThunkAction => (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-  const pos: number = getState().currentPlaying.playingTrackId;
-  const player: Player = getState().playerList.players[pos];
-  if (player) {
-    player.pause();
-    clearInterval(timer);
-    dispatch(trackPauseAC());
-  }
-}
+    const pos: number = getState().currentPlaying.playingTrackId;
+    const player: Player = getState().playerList.players[pos];
+    if (player) {
+      player.pause();
+      clearInterval(timer);
+      dispatch(trackPauseAC());
+    }
+  };
+
+export const updateVolumeDispatch = (
+  volume: number
+): ThunkAction => (
+  dispatch: Dispatch,
+  getState: GetState
+) => {
+    const currentTrackId: number = getState().currentPlaying.playingTrackId;
+    const player: Player = getState().playerList.players[currentTrackId];
+
+    if (player) {
+      dispatch(updateVolumeAC(volume));
+      player.volume = volume / 100;
+    }
+  };
 
 export const trackPlayStartDispatch = (
   positionOfClickedTrack: number
@@ -86,56 +110,55 @@ export const trackPlayStartDispatch = (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-  dispatch(trackPauseDispatch());
+    dispatch(trackPauseDispatch());
 
-  const player: Player = getState().playerList.players[positionOfClickedTrack],
-    currentPlaying: number = getState().currentPlaying.playingTrackId;
+    const player: Player = getState().playerList.players[positionOfClickedTrack],
+      currentPlaying: number = getState().currentPlaying.playingTrackId;
 
-  if (player) {
-    var currentTimeInSec = player.currentTime;
-    if (positionOfClickedTrack === getState().currentPlaying.playingTrackId) {
+    if (player) {
+      var currentTimeInSec = player.currentTime;
+      if (positionOfClickedTrack === getState().currentPlaying.playingTrackId) {
+        player.play();
+        dispatch(trackStartPlayingAC(null, player.currentTime));
+        setTimer(dispatch, player);
+        return;
+      }
+      player.currentTime = 0;
       player.play();
-      dispatch(trackStartPlayingAC(null, player.currentTime));
+      dispatch(trackStartPlayingAC(positionOfClickedTrack, 0));
       setTimer(dispatch, player);
       return;
     }
-    player.currentTime = 0;
-    player.play();
-    dispatch(trackStartPlayingAC(positionOfClickedTrack, 0));
-    setTimer(dispatch, player);
-    return;
+
+    //If the track is played for first time, or a new track is played.
+    const streamUrl: string = getState().trackList.items[positionOfClickedTrack]
+      .streamUrl;
+    dispatch(requestGetPlayerAC(streamUrl, positionOfClickedTrack));
+    getPlayer(streamUrl)
+      .then((player) => {
+        dispatch(receivePlayerAC(player, positionOfClickedTrack));
+        player.addEventListener("ended", () => {
+          dispatch(trackFinishedPlayingAC());
+          clearInterval(timer);
+        });
+        player.play();
+        dispatch(trackStartPlayingAC(null, 0));
+        setTimer(dispatch, player);
+      });
   }
 
-  //If the track is played for first time, or a new track is played.
-  const streamUrl: string = getState().trackList.items[positionOfClickedTrack]
-    .streamUrl;
-  dispatch(requestGetPlayerAC(streamUrl, positionOfClickedTrack));
-  getPlayer(streamUrl)
-    .then((player) => {
-      dispatch(receivePlayerAC(player, positionOfClickedTrack));
-      player.addEventListener("ended", () => {
-        dispatch(trackFinishedPlayingAC());
-        clearInterval(timer);
-      });
-      player.play();
-      dispatch(trackStartPlayingAC(null, 0));
-      setTimer(dispatch, player);
-    });
-}
-
 // Dispatched when slider position changes
-
 export const updateTimeDispatch = (
   newTimeInSec: number
 ): ThunkAction => (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-  updateCurrentTimeAC(newTimeInSec);
+    updateCurrentTimeAC(newTimeInSec);
 
-  const playingTrackId: number = getState().currentPlaying.playingTrackId
-  const player: Player = getState().playerList.players[playingTrackId];
+    const playingTrackId: number = getState().currentPlaying.playingTrackId
+    const player: Player = getState().playerList.players[playingTrackId];
 
-  // change current timer
-  player.currentTime = newTimeInSec;
-}
+    // change current timer
+    player.currentTime = newTimeInSec;
+  }

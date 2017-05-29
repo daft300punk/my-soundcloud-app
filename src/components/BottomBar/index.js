@@ -15,7 +15,9 @@ const BottomBar = ({
   playingTrackId,
   startPlay,
   pause,
-  changeSongCurrentTime
+  changeSongCurrentTime,
+  volume,
+  changeSongVolume
 }) => {
 
 
@@ -25,8 +27,12 @@ const BottomBar = ({
   else if(playState === playStates.PLAYING)
     playOrPauseButton = <img src={require('./img/pause.png')} role="button" onClick={() => pause()}/>;
 
-  const onSliderChange = (event) => {
+  const onTimeSliderChange = (event) => {
     changeSongCurrentTime(event.target.value);
+  }
+
+  const onVolumeSliderChange = (event) => {
+    changeSongVolume(event.target.value);
   }
 
   return (
@@ -52,7 +58,7 @@ const BottomBar = ({
           step={1}
           min={0} max={endTimeInSec}
           value={currentTimeInSec}
-          onChange={(event) => onSliderChange(event)}
+          onChange={(event) => onTimeSliderChange(event)}
         />
         <span>{getTimeString(endTimeInSec)}</span>
       </div>
@@ -62,7 +68,14 @@ const BottomBar = ({
       </div>
       <div className="volume-slider">
         <img src={require('./img/sound.png')} />
-        <input type="range" name="volume" id="volume" min="0" max="100" />
+        <input type="range" 
+          name="volume" 
+          id="volume"
+          step={10} 
+          min="0" max="100"
+          value={volume}
+          onChange={(event) => onVolumeSliderChange(event)}
+        />
       </div>
       <ReactTooltip place="top" effect="float" className="tooltip"/>
     </div>
