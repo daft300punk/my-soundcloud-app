@@ -7,8 +7,9 @@ const TrackList = ({
   playState,
   startPlay,
   playingTrackId,
-  pause}) => {
-
+  pause,
+  onClickAddToPlaylist
+}) => {
   //Hack to align last items to the grid by having dummy/empty elements
   const len = tracks.length;
   const dummyElemToAdd = (Math.floor((len - 3) / 5) + 1) * 5 - (len - 3);
@@ -26,7 +27,9 @@ const TrackList = ({
             idOfClickedTrack={i} startPlay={startPlay}
             playState={playState}
             playingTrackId={playingTrackId}
-            pause={pause} />
+            pause={pause}
+            onClickAddToPlaylist={onClickAddToPlaylist}
+          />
         ))
       }
     </div>

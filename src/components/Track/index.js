@@ -23,7 +23,8 @@ const Track = ({
   startPlay,
   playState,
   playingTrackId,
-  pause
+  pause,
+  onClickAddToPlaylist
 }: TrackType) => {
   let button;
   const styleImg = {
@@ -51,6 +52,12 @@ const Track = ({
         <img src={artworkUrl} alt={title} />
         <div className="artwork-overlay" />
         {button}
+        <div 
+          className="addText"
+          onClick={ () => {onClickAddToPlaylist(idOfClickedTrack);} }
+        >
+          <span>Add to Playlist</span>
+        </div>
       </div>
     </div>
   );
