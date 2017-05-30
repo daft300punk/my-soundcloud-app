@@ -11,6 +11,7 @@ export type Action =
   | { type: 'TRACK_PAUSE' }
   | { type: 'UPDATE_CURRENT_TIME', currentTimeInSec: number }
   | { type: 'UPDATE_VOLUME', volume: number }
+  | { type: 'ADD_TO_PLAYLIST', id: number }
   ;
 
 export type Dispatch =

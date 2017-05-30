@@ -80,14 +80,14 @@ export const trackPauseDispatch = (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-    const pos: number = getState().currentPlaying.playingTrackId;
-    const player: Player = getState().playerList.players[pos];
-    if (player) {
-      player.pause();
-      clearInterval(timer);
-      dispatch(trackPauseAC());
-    }
-  };
+  const pos: number = getState().currentPlaying.playingTrackId;
+  const player: Player = getState().playerList.players[pos];
+  if (player) {
+    player.pause();
+    clearInterval(timer);
+    dispatch(trackPauseAC());
+  }
+};
 
 export const updateVolumeDispatch = (
   volume: number
@@ -95,14 +95,14 @@ export const updateVolumeDispatch = (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-    const currentTrackId: number = getState().currentPlaying.playingTrackId;
-    const player: Player = getState().playerList.players[currentTrackId];
+  const currentTrackId: number = getState().currentPlaying.playingTrackId;
+  const player: Player = getState().playerList.players[currentTrackId];
 
-    if (player) {
-      dispatch(updateVolumeAC(volume));
-      player.volume = volume / 100;
-    }
-  };
+  if (player) {
+    dispatch(updateVolumeAC(volume));
+    player.volume = volume / 100;
+  }
+};
 
 export const trackPlayStartDispatch = (
   positionOfClickedTrack: number
@@ -110,42 +110,42 @@ export const trackPlayStartDispatch = (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-    dispatch(trackPauseDispatch());
+  dispatch(trackPauseDispatch());
 
-    const player: Player = getState().playerList.players[positionOfClickedTrack],
-      currentPlaying: number = getState().currentPlaying.playingTrackId;
+  const player: Player = getState().playerList.players[positionOfClickedTrack],
+    currentPlaying: number = getState().currentPlaying.playingTrackId;
 
-    if (player) {
-      var currentTimeInSec = player.currentTime;
-      if (positionOfClickedTrack === getState().currentPlaying.playingTrackId) {
-        player.play();
-        dispatch(trackStartPlayingAC(null, player.currentTime));
-        setTimer(dispatch, player);
-        return;
-      }
-      player.currentTime = 0;
+  if (player) {
+    var currentTimeInSec = player.currentTime;
+    if (positionOfClickedTrack === getState().currentPlaying.playingTrackId) {
       player.play();
-      dispatch(trackStartPlayingAC(positionOfClickedTrack, 0));
+      dispatch(trackStartPlayingAC(null, player.currentTime));
       setTimer(dispatch, player);
       return;
     }
-
-    //If the track is played for first time, or a new track is played.
-    const streamUrl: string = getState().trackList.items[positionOfClickedTrack]
-      .streamUrl;
-    dispatch(requestGetPlayerAC(streamUrl, positionOfClickedTrack));
-    getPlayer(streamUrl)
-      .then((player) => {
-        dispatch(receivePlayerAC(player, positionOfClickedTrack));
-        player.addEventListener("ended", () => {
-          dispatch(trackFinishedPlayingAC());
-          clearInterval(timer);
-        });
-        player.play();
-        dispatch(trackStartPlayingAC(null, 0));
-        setTimer(dispatch, player);
-      });
+    player.currentTime = 0;
+    player.play();
+    dispatch(trackStartPlayingAC(positionOfClickedTrack, 0));
+    setTimer(dispatch, player);
+    return;
   }
+
+  //If the track is played for first time, or a new track is played.
+  const streamUrl: string = getState().trackList.items[positionOfClickedTrack]
+    .streamUrl;
+  dispatch(requestGetPlayerAC(streamUrl, positionOfClickedTrack));
+  getPlayer(streamUrl)
+    .then((player) => {
+      dispatch(receivePlayerAC(player, positionOfClickedTrack));
+      player.addEventListener("ended", () => {
+        dispatch(trackFinishedPlayingAC());
+        clearInterval(timer);
+      });
+      player.play();
+      dispatch(trackStartPlayingAC(null, 0));
+      setTimer(dispatch, player);
+    });
+}
 
 // Dispatched when slider position changes
 export const updateTimeDispatch = (
@@ -154,11 +154,19 @@ export const updateTimeDispatch = (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-    console.log('dispatch', newTimeInSec);
-    const playingTrackId: number = getState().currentPlaying.playingTrackId
-    const player: Player = getState().playerList.players[playingTrackId];
+  const playingTrackId: number = getState().currentPlaying.playingTrackId
+  const player: Player = getState().playerList.players[playingTrackId];
 
-    // change current timer
-    player.currentTime = newTimeInSec;
-    dispatch(updateCurrentTimeAC(newTimeInSec));
-  }
+  // change current timer
+  player.currentTime = newTimeInSec;
+  dispatch(updateCurrentTimeAC(newTimeInSec));
+};
+
+// Playlist actions
+
+export const playlist = (
+  position: number
+): Action => ({
+  type: actionTypes.ADD_TO_PLAYLIST,
+  id: position
+});
