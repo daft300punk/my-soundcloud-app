@@ -42,4 +42,9 @@
       display: inline-block;
     }
   }
+
+  &:last-child {
+    padding-bottom: 80px;
+  }
 }
+
