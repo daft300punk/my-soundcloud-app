@@ -43,9 +43,9 @@ const mapStateToProps = (state) => {
     artworkUrl = state.trackList.items[id].artworkUrl;
   let currPlayer = state.playerList.players[id];
   return {
-    artworkUrl: artworkUrl || null,
-    artist: state.trackList.items[id].artist,
-    title: state.trackList.items[id].title,
+    artworkUrl: artworkUrl || '',
+    artist: state.trackList.items[id].artist || '',
+    title: state.trackList.items[id].title || '',
     currentTimeInSec: state.currentPlaying.currentTimeInSec,
     endTimeInSec: state.currentPlaying.endTimeInSec,
     playState: state.currentPlaying.playState,

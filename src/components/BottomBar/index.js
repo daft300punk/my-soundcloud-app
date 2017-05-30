@@ -22,10 +22,10 @@ const BottomBar = ({
 
 
   let playOrPauseButton;
-  if(playState === playStates.PAUSED)
-    playOrPauseButton = <img src={require('./img/play.png')} role="button" onClick={() => startPlay(playingTrackId)}/>;
-  else if(playState === playStates.PLAYING)
-    playOrPauseButton = <img src={require('./img/pause.png')} role="button" onClick={() => pause()}/>;
+  if (playState === playStates.PAUSED || playState === playStates.NOT_PLAYING)
+    playOrPauseButton = <img src={require('./img/play.png')} role="button" onClick={() => startPlay(playingTrackId)} />;
+  else if (playState === playStates.PLAYING)
+    playOrPauseButton = <img src={require('./img/pause.png')} role="button" onClick={() => pause()} />;
 
   const onTimeSliderChange = (event) => {
     changeSongCurrentTime(event.target.value);
@@ -46,15 +46,14 @@ const BottomBar = ({
         <p data-tip={artist}>{artist}</p>
       </div>
       <div className="controls">
-        <img src={require('./img/backward.png')} role="button"/>
+        <img src={require('./img/backward.png')} role="button" />
         {playOrPauseButton}
-        <img src={require('./img/forward.png')} role="button"/>
+        <img src={require('./img/forward.png')} role="button" />
       </div>
       <div className="seek-slider">
         <span>{getTimeString(currentTimeInSec)}</span>
         <input type="range"
           name="seek"
-          id="points"
           step={1}
           min={0} max={endTimeInSec}
           value={currentTimeInSec}
@@ -63,21 +62,20 @@ const BottomBar = ({
         <span>{getTimeString(endTimeInSec)}</span>
       </div>
       <div className="repeat-shuffle">
-        <img src={require('./img/repeat.png')} role="button"/>
-        <img src={require('./img/shuffle.png')} role="button"/>
+        <img src={require('./img/repeat.png')} role="button" />
+        <img src={require('./img/shuffle.png')} role="button" />
       </div>
       <div className="volume-slider">
         <img src={require('./img/sound.png')} />
-        <input type="range" 
-          name="volume" 
-          id="volume"
-          step={10} 
+        <input type="range"
+          name="volume"
+          step={10}
           min="0" max="100"
           value={volume}
           onChange={(event) => onVolumeSliderChange(event)}
         />
       </div>
-      <ReactTooltip place="top" effect="float" className="tooltip"/>
+      <ReactTooltip place="top" effect="float" className="tooltip" />
     </div>
   );
 }

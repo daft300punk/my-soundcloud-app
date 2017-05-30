@@ -154,11 +154,11 @@ export const updateTimeDispatch = (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-    updateCurrentTimeAC(newTimeInSec);
-
+    console.log('dispatch', newTimeInSec);
     const playingTrackId: number = getState().currentPlaying.playingTrackId
     const player: Player = getState().playerList.players[playingTrackId];
 
     // change current timer
     player.currentTime = newTimeInSec;
+    dispatch(updateCurrentTimeAC(newTimeInSec));
   }
