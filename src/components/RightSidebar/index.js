@@ -1,11 +1,28 @@
 import React from 'react';
 import './rightSidebar.scss';
 
-const RightSidebar = () => {
+const RightSidebar = ({
+  trackList,
+  playlist
+}) => {
+  let list = [];
+  for (let i = 0; i < playlist.length; i++) {
+    const element = (
+      <div className="playlist-item" key={i}>
+        <img src={trackList[playlist[i]].artworkUrl} />
+        <div className="playlist-info">
+          <h4>{trackList[playlist[i]].title}</h4>
+          <span>{trackList[playlist[i]].artist || ' '}</span>
+        </div>
+      </div>
+    );
+    list.push(element);
+  }
   return (
-    <div className="leftsidebar-wrap" id="rightsidebar">
+    <div className="rightsidebar-wrap" id="rightsidebar">
+      {list}
     </div>
   );
-}
+};
 
 export default RightSidebar;

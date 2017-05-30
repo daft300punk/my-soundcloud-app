@@ -1,6 +1,56 @@
-.leftsidebar-wrap {
+.rightsidebar-wrap {
   background: #eaeaea;
   flex: 0 0 250px;
   height: calc(100vh - 80px);
   position: relative;
+  overflow: hidden;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar { 
+    display: none; 
+  }
+
+  .playlist-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    padding: 16px 16px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+
+    &:nth-child {
+      padding-bottom: 80px;
+    }
+
+    img {
+      height: 50px;
+      border-radius: 50%;
+      padding-right: 8px;
+    }
+
+    .playlist-info {
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        width: 150px;
+        font-family: sans-serif;
+        font-size: 14px;
+        color: rgba(0, 0, 0, .8);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      } 
+
+      span {
+        width: 150px;
+        font-family: sans-serif;
+        font-size: 13px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
 }
