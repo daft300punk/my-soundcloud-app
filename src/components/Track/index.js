@@ -15,7 +15,8 @@ type TrackType = {
   playState: string,
   playingTrackId: number,
   pause: Function,
-  onClickAddToPlaylist: Function
+  onClickAddToPlaylist: Function,
+  isDummy: Boolean
 };
 
 const Track = ({
@@ -26,8 +27,12 @@ const Track = ({
   playState,
   playingTrackId,
   pause,
-  onClickAddToPlaylist
+  onClickAddToPlaylist,
+  isDummy
 }: TrackType) => {
+  if(isDummy)
+    return <div className="track"></div>;
+
   let button;
   const styleImg = {
     width: '64px',
@@ -73,7 +78,8 @@ Track.propTypes = {
   playingTrackId: PropTypes.number,
   pause: PropTypes.func.isRequired,
   playState: PropTypes.string,
-  onClickAddToPlaylist: PropTypes.func.isRequired
+  onClickAddToPlaylist: PropTypes.func.isRequired,
+  isDummy: PropTypes.bool.isRequired
 };
 
 export default Track;

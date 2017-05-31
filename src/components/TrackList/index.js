@@ -14,7 +14,7 @@ const TrackList = ({
   //Hack to align last items to the grid by having dummy/empty elements
   const len = tracks.length;
   const dummyElemToAdd = (Math.floor((len - 3) / 5) + 1) * 5 - (len - 3);
-  for (let i = 0; i <= dummyElemToAdd; i++) tracks.push({});
+  for (let i = 0; i <= dummyElemToAdd; i++) tracks.push({dummy: true});
 
 
   return (
@@ -30,6 +30,7 @@ const TrackList = ({
             playingTrackId={playingTrackId}
             pause={pause}
             onClickAddToPlaylist={onClickAddToPlaylist}
+            isDummy={ track.hasOwnProperty('dummy') ?  true : false }
           />
         ))
       }
