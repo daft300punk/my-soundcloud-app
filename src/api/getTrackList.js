@@ -23,6 +23,7 @@ export default function getTrackListApi() {
         };
       });
       resolve(tracks);
-    });
+    })
+    .catch(err => reject(err));
   });
-};
+}

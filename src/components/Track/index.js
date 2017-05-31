@@ -1,7 +1,8 @@
 //@flow
-import React, { PropTypes } from 'react';
+import React from 'react';
 import './track.scss';
 import { playStates } from '../../constants/PlayState';
+import PropTypes from 'prop-types';
 
 const playIcon = require('./img/play_icon.png');
 const pauseIcon = require('./img/pause_icon.png');
@@ -13,7 +14,8 @@ type TrackType = {
   startPlay: Function,
   playState: string,
   playingTrackId: number,
-  pause: Function
+  pause: Function,
+  onClickAddToPlaylist: Function
 };
 
 const Track = ({
@@ -71,6 +73,7 @@ Track.propTypes = {
   playingTrackId: PropTypes.number,
   pause: PropTypes.func.isRequired,
   playState: PropTypes.string,
+  onClickAddToPlaylist: PropTypes.func.isRequired
 };
 
 export default Track;

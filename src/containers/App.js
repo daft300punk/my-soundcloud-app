@@ -7,8 +7,8 @@ import RightSidebarContainer from './RightSidebarContainer';
 import BottomBarContainer from './BottomBarContainer';
 import fetchTop50Tracks from '../actions/getTop50Action';
 import { connect } from 'react-redux';
-import { playStates } from '../constants/PlayState';
 import updateDimension from '../util/updateDimension';
+import PropTypes from 'prop-types';
 
 import './App.scss';
 
@@ -28,7 +28,6 @@ class App extends Component {
   }
 
   render() {
-    const { playState } = this.props;
     return (
       <div className="app">
         <TopbarContainer />
@@ -43,6 +42,10 @@ class App extends Component {
   }
 
 }
+
+App.propTypes = {
+  fetchTop50: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => ({
   playState: state.currentPlaying.playState

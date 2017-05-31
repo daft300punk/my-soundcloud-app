@@ -1,5 +1,6 @@
 import React from 'react';
 import './rightSidebar.scss';
+import PropTypes from 'prop-types';
 
 const RightSidebar = ({
   trackList,
@@ -23,6 +24,11 @@ const RightSidebar = ({
       {list}
     </div>
   );
+};
+
+RightSidebar.propTypes = {
+  trackList: PropTypes.array.isRequired,
+  playlist: PropTypes.array.isRequired
 };
 
 export default RightSidebar;

@@ -6,6 +6,7 @@ import {
   trackPauseDispatch,
   playlist
 } from '../../actions/playerAction';
+import PropTypes from 'prop-types';
 
 const TrackListContainer = ({
   tracks,
@@ -24,6 +25,15 @@ const TrackListContainer = ({
     onClickAddToPlaylist={onClickAddToPlaylist}
   />
 );
+
+TrackListContainer.propTypes = {
+  tracks: PropTypes.array.isRequired,
+  startPlay: PropTypes.func.isRequired,
+  playState: PropTypes.string.isRequired,
+  playingTrackId: PropTypes.number.isRequired,
+  pause: PropTypes.func.isRequired,
+  onClickAddToPlaylist: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => ({
   tracks: state.trackList.items,

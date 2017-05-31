@@ -1,5 +1,4 @@
 import * as actionTypes from '../constants/ActionTypes';
-import getTop50 from '../api/api-v2';
 
 export const requestTrackList = () => ({
   type: actionTypes.REQUEST_TRACKLIST,

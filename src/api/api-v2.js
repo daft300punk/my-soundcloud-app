@@ -31,7 +31,7 @@ export default function getTop50() {
           streamUrl: '/tracks/' + item.track.id,
           title: item.track.title,
           artist: item.track.publisher_metadata !== null ? item.track.publisher_metadata.artist : '',
-        }
+        };
       });
     })
     .then(res => resolve(res))

@@ -1,5 +1,4 @@
 //@flow
-import * as actionTypes from '../constants/ActionTypes';
 
 export type Action =
   { type: 'REQUEST_TRACKLIST' }

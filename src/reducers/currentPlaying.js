@@ -29,12 +29,13 @@ let initialState: currentPlayingState = {
   currentTimeInSec: 0,
   endTimeInSec: 0,
   volume: 50
-}
+};
 
+/*eslint no-case-declarations: "error"*/
 export default function currentPlaying(
   state: currentPlayingState = initialState,
   action: currentPlayingAction): currentPlayingState {
-  console.log('called reducer', action);
+  let playingTrackId: ?number;
   switch (action.type) {
     case actionTypes.REQUEST_GET_PLAYER:
       return Object.assign({}, state, {
@@ -48,7 +49,7 @@ export default function currentPlaying(
         endTimeInSec: action.endTimeInSec
       });
     case actionTypes.TRACK_START_PLAYING:
-      const playingTrackId: ?number = action.pos !== null ? action.pos : state.playingTrackId;
+      playingTrackId = action.pos !== null ? action.pos : state.playingTrackId;
       return Object.assign({}, state, {
         playState: playStates.PLAYING,
         playingTrackId: playingTrackId,

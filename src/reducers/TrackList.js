@@ -10,7 +10,7 @@ type trackListState = {
 var initialState: trackListState = {
   isFetching: false,
   items: []
-}
+};
 
 export default function trackList(
   state: trackListState = initialState,

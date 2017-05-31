@@ -29,11 +29,11 @@ const BottomBar = ({
 
   const onTimeSliderChange = (event) => {
     changeSongCurrentTime(event.target.value);
-  }
+  };
 
   const onVolumeSliderChange = (event) => {
     changeSongVolume(event.target.value);
-  }
+  };
 
   return (
     <div className="bottom-bar">
@@ -78,7 +78,7 @@ const BottomBar = ({
       <ReactTooltip place="top" effect="float" className="tooltip" />
     </div>
   );
-}
+};
 
 BottomBar.propTypes = {
   artworkUrl: pt.string.isRequired,
@@ -89,7 +89,10 @@ BottomBar.propTypes = {
   playState: pt.string.isRequired,
   playingTrackId: pt.number.isRequired,
   startPlay: pt.func.isRequired,
-  pause: pt.func.isRequired
-}
+  pause: pt.func.isRequired,
+  changeSongCurrentTime: pt.func.isRequired,
+  volume: pt.number.isRequired,
+  changeSongVolume: pt.func.isRequired
+};
 
 export default BottomBar;

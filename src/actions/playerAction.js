@@ -2,7 +2,7 @@
 import * as actionTypes from '../constants/ActionTypes';
 import { getPlayer } from '../api/getPlayer';
 import type {
-  Action, Dispatch, ThunkAction, PromiseAction, GetState
+  Action, Dispatch, ThunkAction, GetState
 } from './flowType';
 
 type Player = {
@@ -71,7 +71,7 @@ const setTimer = (dispatch: Dispatch, player: Player) => {
   timer = setInterval((): void => {
     dispatch(updateCurrentTimeAC(player.currentTime));
   }, 100);
-}
+};
 
 //Dispatch
 
@@ -112,11 +112,9 @@ export const trackPlayStartDispatch = (
 ) => {
   dispatch(trackPauseDispatch());
 
-  const player: Player = getState().playerList.players[positionOfClickedTrack],
-    currentPlaying: number = getState().currentPlaying.playingTrackId;
+  const player: Player = getState().playerList.players[positionOfClickedTrack];
 
   if (player) {
-    var currentTimeInSec = player.currentTime;
     if (positionOfClickedTrack === getState().currentPlaying.playingTrackId) {
       player.play();
       dispatch(trackStartPlayingAC(null, player.currentTime));
@@ -137,7 +135,7 @@ export const trackPlayStartDispatch = (
   getPlayer(streamUrl)
     .then((player) => {
       dispatch(receivePlayerAC(player, positionOfClickedTrack));
-      player.addEventListener("ended", () => {
+      player.addEventListener('ended', () => {
         dispatch(trackFinishedPlayingAC());
         clearInterval(timer);
       });
@@ -145,7 +143,7 @@ export const trackPlayStartDispatch = (
       dispatch(trackStartPlayingAC(null, 0));
       setTimer(dispatch, player);
     });
-}
+};
 
 // Dispatched when slider position changes
 export const updateTimeDispatch = (
@@ -154,7 +152,7 @@ export const updateTimeDispatch = (
   dispatch: Dispatch,
   getState: GetState
 ) => {
-  const playingTrackId: number = getState().currentPlaying.playingTrackId
+  const playingTrackId: number = getState().currentPlaying.playingTrackId;
   const player: Player = getState().playerList.players[playingTrackId];
 
   // change current timer

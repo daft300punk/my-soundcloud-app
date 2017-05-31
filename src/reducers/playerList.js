@@ -7,12 +7,14 @@ type playerListStateType = {
 
 type playerListActionType = {
   type: string,
-  players: Object
+  players: Object,
+  pos: number,
+  player: Object
 }
 
 const initialState: playerListStateType = {
   players: {}
-}
+};
 
 const getNewPlayers = (
   state: playerListStateType,
@@ -22,7 +24,7 @@ const getNewPlayers = (
   let newPlayer = Object.assign({}, state.players);
   newPlayer[id] = value;
   return newPlayer;
-}
+};
 
 export default function playerList(
   state: playerListStateType = initialState,

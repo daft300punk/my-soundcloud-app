@@ -9,4 +9,4 @@ export const playStates: playState = {
   NOT_PLAYING: 'NOT_PLAYING',
   PLAYING: 'PLAYING',
   PAUSED: 'PAUSED',
-}
+};

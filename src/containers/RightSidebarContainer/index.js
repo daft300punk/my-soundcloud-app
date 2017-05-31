@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RightSidebar from '../../components/RightSidebar';
+import PropTypes from 'prop-types';
 
 const RightSidebarContainer = ({
   playlist,
@@ -12,16 +13,16 @@ const RightSidebarContainer = ({
   />
 );
 
+RightSidebarContainer.propTypes = {
+  playlist: PropTypes.array.isRequired,
+  trackList: PropTypes.array.isRequired
+};
+
 const mapStateToProps = (state) => ({
   playlist: state.playlist,
   trackList: state.trackList.items
 });
 
-const mapDispatchToProps = (dispatch) => ({
-
-})
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(RightSidebarContainer);

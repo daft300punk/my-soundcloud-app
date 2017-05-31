@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Track from '../Track';
-import './trackList.scss'
+import './trackList.scss';
+import PropTypes from 'prop-types';
 
 const TrackList = ({
   tracks,
@@ -33,8 +34,8 @@ const TrackList = ({
         ))
       }
     </div>
-  )
-}
+  );
+};
 
 TrackList.propTypes = {
   tracks: PropTypes.array.isRequired,
@@ -42,6 +43,7 @@ TrackList.propTypes = {
   playState: PropTypes.string.isRequired,
   playingTrackId: PropTypes.number,
   pause: PropTypes.func.isRequired,
+  onClickAddToPlaylist: PropTypes.func.isRequired
 };
 
 export default TrackList;
