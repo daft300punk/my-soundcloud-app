@@ -21,8 +21,26 @@ const LeftSidebar = () => {
         <option>Music</option>
         <option>Audio</option>
       </select>*/}
+      <div className="main-cat">Music</div>
+      <div className="category active">
+        <img src={require('./img/top.png')}/>
+        <span>Top 50</span>
+      </div>
+      <div className="category">
+        <img src={require('./img/hot.png')}/>
+        <span>Hot & New</span>
+      </div>
+      <div className="main-cat">Audio</div>
+      <div className="category">
+        <img src={require('./img/top.png')}/>
+        <span>Top 50</span>
+      </div>
+      <div className="category">
+        <img src={require('./img/hot.png')}/>
+        <span>Hot & New</span>
+      </div>
     </div>
   );
-}
+};
 
 export default LeftSidebar;
