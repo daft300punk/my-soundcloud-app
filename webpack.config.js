@@ -27,6 +27,10 @@ module.exports = {
         loaders: ['style', 'css', 'sass']
       },
       {
+        test: /\.css$/,
+        loaders: ['style', 'css', 'sass']
+      },
+      {
         test: /\.png$/,
         include: path.join(__dirname, 'src'),
         loader: 'url-loader?limit=80'

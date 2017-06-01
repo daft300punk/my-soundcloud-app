@@ -28,12 +28,25 @@ class App extends Component {
   }
 
   render() {
+    const { isLoading } = this.props;
+    const Loader = () => (
+      <div className="h-loader">
+        <div className="spinner loader-content">
+          <div className="double-bounce1 loader"></div>
+          <div className="double-bounce2"></div>
+        </div>
+      </div>
+    );
     return (
       <div className="app">
         <TopbarContainer />
         <div className="main-wrap">
           <LeftSidebarContainer />
-          <TrackListContainer />
+          {
+            isLoading ?
+              <Loader />
+              : <TrackListContainer />
+          }
           <RightSidebarContainer />
         </div>
         <BottomBarContainer />
@@ -48,7 +61,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  playState: state.currentPlaying.playState
+  playState: state.currentPlaying.playState,
+  isLoading: state.trackList.isFetching
 });
 
 const mapDispatchToProps = (dispatch) => ({
