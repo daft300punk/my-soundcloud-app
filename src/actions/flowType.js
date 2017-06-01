@@ -11,6 +11,7 @@ export type Action =
   | { type: 'UPDATE_CURRENT_TIME', currentTimeInSec: number }
   | { type: 'UPDATE_VOLUME', volume: number }
   | { type: 'ADD_TO_PLAYLIST', id: number }
+  | { type: 'CHANGE_CATEGORY', trackType: 'music' | 'audio', kind: 'top' | 'trending', genre: 'all-music' | 'all-audio' }
   ;
 
 export type Dispatch =
