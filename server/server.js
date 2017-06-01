@@ -32,7 +32,7 @@ app.use(cors());
 app.use(Express.static('public'));
 
 app.get('/tracks', (req, res) => {
-  getTop50()
+  getTop50(req.query.kind, req.query.genre)
   .then(result => {
     res.send(result);
   });
