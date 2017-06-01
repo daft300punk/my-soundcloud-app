@@ -1,10 +1,10 @@
 import 'isomorphic-fetch';
 
-export default function getTop50() {
+export default function getTop50(kind = 'top', genre = 'all-music') {
   return new Promise(function(resolve, reject) {
     let urlParams = {
-      kind: 'top',
-      genre: 'soundcloud%3Agenres%3Aall-music',
+      kind: kind,
+      genre: 'soundcloud%3Agenres%3A' + genre,
       high_tier_only: 'false',
       client_id: 'MmZKx4l7fDwXdlL3KJZBiJZ8fLonINga',
       limit: '50',

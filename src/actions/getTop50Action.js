@@ -9,9 +9,10 @@ export const receiveTrackList = trackList => ({
   trackList: trackList,
 });
 
-const fetchTop50Tracks =  () => dispatch => {
+const fetchTop50Tracks =  (kind = 'top', genre = 'all-music') => dispatch => {
+  const url = `./tracks?kind=${kind}&genre=${genre}`;
   dispatch(requestTrackList());
-  return fetch('./tracks')
+  return fetch(url)
     .then(res => {
       return res.json();
     })
